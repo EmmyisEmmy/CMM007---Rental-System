@@ -1,6 +1,8 @@
 <?php session_start(); ?>
-<!-- <?php include("../config/auth.php"); ?>
-<!DOCTYPE html> -->
+<?php include("../config/auth.php"); 
+$table_query = mysqli_query($conn, "SELECT COUNT (*) FROM users");
+?>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">

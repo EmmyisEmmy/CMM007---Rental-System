@@ -1,3 +1,7 @@
+<?php session_start();
+include("../config/db.php"); 
+$table_query = mysqli_query($conn, "SELECT * FROM users");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,21 +41,26 @@
             <tr>
               <th>Name</th>
               <th>email</th>
-              <th>password</th>
-              <th>joined</th>
+              <!-- <th>joined</th> -->
               <th>Role</th>
-              <th>Status</th>
+              <!-- <th>Current Status</th> -->
             </tr>
           </thead>
           <tbody>
-            
-               <tr>
-                <td colspan="6" class="text-center py-5 text-muted">
-                  <i class="fas fa-box-open fa-2x mb-2 d-block"></i>
-                  Nothing to see here.
-                </td>
+                
+              <?php 
+              while ($row = mysqli_fetch_assoc($table_query)) { ?>
+                <tr>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['role']; ?></td>
+                
               </tr>
-            <tbody>
+              <?php } ?>
+
+
+
+          </tbody>
         </table>
       </div>
 
