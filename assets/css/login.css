@@ -1,0 +1,151 @@
+ 
+*{
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Popins", sans-serif;
+
+}
+
+h1{
+
+  font-size: 30px;
+  margin: 30px;
+
+
+}
+
+body{
+
+  margin: 0;
+  height: 100vh;
+
+
+}
+
+.main {
+  display: flex;
+  height: 100vh;
+
+}
+
+.graphics_1 {
+  width: 50%;
+  background-image: url("../Image/Login_image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.graphics_2 {
+  width: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+
+ .middle{
+
+  width: 420px;
+  background: white;
+  color: black;
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  
+}
+
+.middle h1{
+
+  font-size: 25px;
+  text-align: center;
+
+
+} 
+
+
+.middle .box{
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+
+
+.box input{
+
+
+  width:100%;
+  height: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 15px;
+  color: black;
+  padding: 20px;
+  
+
+
+}
+
+.box input::placeholder{
+    color:grey;
+}
+
+.middle .button1{
+
+  width: 100%;
+  height: 45px;
+  background: #003049;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;  
+
+
+
+}
+
+.logo_spot{
+
+  display:flex;
+  justify-content: center;
+  margin-bottom:15px;
+}
+
+.logo_spot img{
+  width:80px;
+  height:auto;
+  display:block;
+}
+
+.middle .selection{
+
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+
+.selection select{
+
+  width:100%;
+  height: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 15px;
+  color: black;
+  padding: 10px 20px;
+
+}
+
+

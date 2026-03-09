@@ -1,0 +1,109 @@
+*{
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+
+}
+
+body{
+    height: 100vh;
+    background-color: white;
+
+
+}
+
+li{
+
+  list-style: none;
+}
+
+a{
+
+  text-decoration: none;
+  color:black;
+  font-size: 12px;
+
+}
+
+a:hover{
+
+  color: orange;
+}
+
+
+/* header */
+
+header{
+    position: relative;
+    padding: 0px 2px;
+    border-bottom: 1px solid #ccc;
+    width:100%;
+    box-sizing: border-box; 
+
+
+}
+
+.navbar {
+
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+
+}
+
+.navbar .logo a{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: -300px;
+
+}
+
+.navbar .links{
+
+  display: flex;
+  gap: 32px;
+  font-size: 20px;
+  margin-left: -1000px;
+}
+
+.button{
+
+  background-color: orange;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+
+
+}
+
+.button:hover{
+
+  scale: 1.09;
+  color: white;
+
+
+
+}
+
+.rented{
+
+   font-size: 24px;          
+    font-weight: 500;         
+    color: #333;              
+    margin-bottom: 30px;
+    margin-top: 40px;
+    margin-left: 150px;      
+    text-align: left; 
+}

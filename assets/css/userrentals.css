@@ -1,0 +1,53 @@
+
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.footer-main {
+
+  background-color: #003049;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer-main .footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0 0 0;
+  margin: 0;
+}
+
+.footer-main .footer-links li a{
+
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+  flex: 1;
+}
+
+
+.nav-pills .nav-link {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+.nav-pills .nav-link.active {
+  background-color: red;
+  color: white;
+}
+
+#active-tab.nav-link.active {
+    background-color: #dc3545 
+}
+
+#returned-tab.nav-link.active {
+    background-color: lightgreen 
+}

@@ -1,0 +1,181 @@
+*{
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+
+}
+
+body{
+    height: 100vh;
+    background-color: white;
+
+
+}
+
+li{
+
+  list-style: none;
+}
+
+a{
+
+  text-decoration: none;
+  color:black;
+  font-size: 12px;
+
+}
+
+a:hover{
+
+  color: orange;
+}
+
+
+/* header */
+
+header{
+    position: relative;
+    padding: 0px 2px;
+    border-bottom: 1px solid #ccc;
+    width:100%;
+    box-sizing: border-box; 
+
+
+}
+
+.navbar {
+
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+
+}
+
+.navbar .logo a{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: -300px;
+
+}
+
+.navbar .links{
+
+  display: flex;
+  gap: 32px;
+  font-size: 20px;
+  margin-left: -1000px;
+}
+
+.button{
+
+  background-color: orange;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+
+
+}
+
+.button:hover{
+
+  scale: 1.09;
+  color: white;
+
+
+
+}
+
+
+/* Images display */
+/* .stock img {
+    width: 100%;
+    height: 200px;  
+    object-fit: cover;
+    display: block;
+}
+
+.stock-holder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.stock {
+
+  width: 325px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,.2); */
+
+
+
+/* Search button */
+
+
+.box {
+   
+  
+    margin: 80px auto 0 auto;
+    width: 700px;
+    padding:20px;
+    background: white; 
+    border-radius: 20px;
+}
+
+.typing_box {
+    display: flex;              
+    gap: 10px;                  
+  
+}
+
+.typing_box input {
+    flex: 1;                    
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.typing_box .selection {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #4a90e2;
+    color: white;
+    cursor: pointer;
+
+
+
+}
+
+.box form .selection{
+
+    background-color:orange;
+    padding: 10px 20px;
+    border-radius: 20px;
+
+}
+
+/* Greeting */
+
+.greeting {
+    font-size: 24px;          
+    font-weight: 500;         
+    color: #333;              
+    margin-bottom: 30px;      
+    text-align: center;      
+}

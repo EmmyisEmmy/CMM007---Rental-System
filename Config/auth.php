@@ -1,0 +1,201 @@
+<?php
+session_start();
+include("../config/db.php");
+
+if (isset($_POST['register_button'])) {
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+    $role = $_POST['role'];
+
+    if ($password != $confirm_password) {
+        $_SESSION['register_error'] = "Passwords do not match!";
+        header("Location: ../user/register.php");
+        exit();
+    }
+
+    $checkEmail = mysqli_query($conn, "SELECT email FROM users WHERE email='$email'");
+
+    if (mysqli_num_rows($checkEmail) > 0) {
+
+        $_SESSION['register_error'] = "The Email already exists!";
+        header("Location: ../user/register.php");
+        exit();
+
+    } else {
+
+        $query = "INSERT INTO users (name, email, password, role)
+                  VALUES ('$name','$email','$password','$role')";
+
+        $query_run = mysqli_query($conn, $query);
+
+        if ($query_run) {
+            $_SESSION['register_success'] = "Registration successful!";
+            header("Location: ../login/login.php");
+            exit();
+        } else {
+            $_SESSION['register_error'] = "Registration failed!";
+            header("Location: ../user/register.php");
+            exit();
+        }
+
+
+    }
+}
+
+
+
+
+if (isset($_POST['register_button'])) {
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+}
+
+// As an admin, I want to upload items for users to see what is available
+
+
+if (isset($_POST['register_button'])) {
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+}
+
+if (isset($_POST["login_button"])) {
+    
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $role = $_POST['role'];
+
+    $outcome = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND role ='$role'");
+    $active = mysqli_fetch_assoc($checkEmail);
+
+    if (mysqli_num_rows($outcome) == 1 ) {
+        // $_SESSION['password'] = $active['password'];
+        if ($password == $active['password']) {
+            $_SESSION['valid_details'] = "Login Successful";
+            $_SESSION['user_id'] = $active['id'];
+            $_SESSION['user_name'] = $active['name'];
+            $_SESSION['user_role'] = $active['role'];
+
+            if ($active['role'] == 'user') {
+                header("Location: ../user/dashboardu.php");
+                exit();
+            } else {
+            
+                header("Location: ../admin/dashboard.php");
+                exit();
+
+            }
+
+        } else {
+            $_SESSION['wrong_pass'] = "Wrong password";        
+            header("Location: ../login/login.php");
+            exit();
+        }
+
+
+    } else {
+
+        $_SESSION['error_login'] = "Invalid email or role";
+        header("Location: ../login/login.php");
+        exit();
+    }
+
+ }
+
+
+ if (isset($_POST["addcart"])) {
+    
+    // $email = $_POST['email'];
+    // $password = $_POST['password'];
+    // $role = $_POST['role'];
+
+    // $checkEmail = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND role ='$role'");
+    // $active = mysqli_fetch_assoc($checkEmail);
+
+    $user_id = $_SESSION['user_id'];
+    $item_id = $_POST['item_id'];
+
+    $checkEmail = mysqli_query($conn, "SELECT * FROM cart WHERE email='$email' AND role ='$role'");
+    $active = mysqli_fetch_assoc($checkEmail);
+ }
+
+
+
+if (isset($_POST["item_publish"])) {
+
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $specification = $_POST['specification'];
+    $category= $_POST['category'];
+    $price= $_POST['price'];
+    $image = $_FILES['image']['name'];
+
+    $query = "INSERT INTO rentals (title, description, specification, category, price, image)
+            VALUES ('$title','$description','$specification','$category', '$price', '$image')";
+
+    $run_query = mysqli_query($conn, $query);
+
+    if ($run_query) {
+        $_SESSION['post_success'] = "Successfully Published!";
+        header("Location: ../admin/ud.php");
+        exit();
+
+    } else {
+        $_SESSION['post_failure'] = "Publishing failed";
+        header("Location: ../admin/post.php");
+        exit();
+    }
+}
+
+if (isset($_POST["item_delete"])) {
+
+    $id_item = $_POST['id_item'];
+    $query = "UPDATE rentals SET status = 'deleted' WHERE id = '$id_item'";
+    $query_table = mysqli_query($conn, $query);
+    
+    if ($run_query) {
+        $_SESSION['delete_success'] = "item deleted";
+        header("Location: ../admin/ud.php");
+        exit();
+
+    } else {
+        $_SESSION['deleteitem_failure'] = "deletingfailed";
+        header("Location: ../admin/ud.php");
+        exit();
+    }
+
+
+
+}
+
+if (isset($_POST["item_add"])) {
+
+    $id_item = $_POST['id_item'];
+    $query = "UPDATE rentals SET status = 'available' WHERE id = '$id_item'";
+    $query_table = mysqli_query($conn, $query);
+    
+    if ($query_table) {
+        $_SESSION['add_success'] = "item added";
+        header("Location: ../admin/ud.php");
+        exit();
+
+    } else {
+        $_SESSION['deleteitem_failure'] = "deletingfailed";
+        header("Location: ../admin/ud.php");
+        exit();
+    }
+
+
+
+}
+
+
+?>
+
+
+
+
+
+
