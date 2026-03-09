@@ -1,6 +1,7 @@
 <?php session_start(); ?>
-<?php include("../config/auth.php"); 
-$table_query = mysqli_query($conn, "SELECT COUNT (*) FROM users");
+<?php include("../config/db.php"); 
+$tablecount_query = mysqli_query($conn, "SELECT COUNT(*) FROM users");
+$Activerental_query = mysqli_query($conn, "SELECT COUNT(*) FROM rentals WHERE status = 'available'");
 ?>
 
 <html lang="en">
@@ -34,8 +35,14 @@ $table_query = mysqli_query($conn, "SELECT COUNT (*) FROM users");
               <div class= "content-inside">
                 <div class= "content-header">
                   <div class= "description">
-                    <span class="title">Available items for Rent</span>
-                    <span class="No-items">24</span>
+                    <span class="title">Registered Users</span>
+                    <span class="No-items">
+                      <?php
+                      $number_display = mysqli_fetch_row($tablecount_query);
+                      echo $number_display[0];
+                      ?>
+                     
+                    </span>
                     
                   </div>
                   <i class="fas fa-box sign"></i>
@@ -45,8 +52,13 @@ $table_query = mysqli_query($conn, "SELECT COUNT (*) FROM users");
               <div class= "content-inside">
                 <div class= "content-header">
                   <div class= "description">
-                    <span class="title">Returned Items</span>
-                    <span class="No-items">24</span>
+                    <span class="title">Available Items</span>
+                    <span class="No-items">
+                      <?php
+                      $active_display = mysqli_fetch_row($Activerental_query);
+                      echo $active_display[0];
+                      ?>
+                    </span>
                   </div>
                   <i class="fas fa-box sign"></i>
                 </div>
