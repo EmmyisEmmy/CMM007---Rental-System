@@ -28,9 +28,6 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status != 'delet
             </div>
           </div>
 
-         
-  <div class="content">
-
 
 
     <div class="contents-place">
@@ -40,12 +37,16 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status != 'delet
         <table class="table table-hover">
           <thead>
             <tr>
+              
+             
               <th>Image</th>
               <th>Title</th>
               <th>Category</th>
               <th>Pricing</th>
-              <th>Status</th>
+              <th>Quantity</th>
+              <th>Condition</th>
               <th>Date Added</th>
+              <th>Status</th>
             </tr>
           </thead>
 
@@ -53,10 +54,15 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status != 'delet
               <?php
               while ($row = mysqli_fetch_assoc($table_query)) { ?>
                   <tr>
+                      
                       <td><?php echo $row['image']; ?></td>
                       <td><?php echo $row['title']; ?></td>
                       <td><?php echo $row['category']; ?></td>
                       <td><?php echo $row['price']; ?></td>
+                      <td><?php echo $row['item_qty']; ?></td>
+                      <td><?php echo $row['item_condition']; ?></td>
+                      <td><?php echo $row['created_at']; ?></td>
+
                       <td>
                         
                         <form action= "../config/auth.php" method="POST">
@@ -79,6 +85,4 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status != 'delet
 </body>
 </html>
       
-
-</body> 
-</html>       
+   

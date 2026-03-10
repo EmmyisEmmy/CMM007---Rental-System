@@ -126,14 +126,17 @@ if (isset($_POST["login_button"])) {
 if (isset($_POST["item_publish"])) {
 
     $title = $_POST['title'];
+    $item_condition = $_POST['item_condition'];
+    $item_qty = $_POST['item_qty'];
+    $created_at = $_POST['created_at'];
     $description = $_POST['description'];
     $specification = $_POST['specification'];
     $category= $_POST['category'];
     $price= $_POST['price'];
     $image = $_FILES['image']['name'];
 
-    $query = "INSERT INTO rentals (title, description, specification, category, price, image)
-            VALUES ('$title','$description','$specification','$category', '$price', '$image')";
+    $query = "INSERT INTO rentals (title, description, specification, category, price, image, item_condition, item_qty, created_at)
+            VALUES ('$title','$description','$specification','$category', '$price', '$image', '$item_condition', '$item_qty','$created_at')";
 
     $run_query = mysqli_query($conn, $query);
 

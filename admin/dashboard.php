@@ -45,7 +45,7 @@ $Activerental_query = mysqli_query($conn, "SELECT COUNT(*) FROM rentals WHERE st
                     </span>
                     
                   </div>
-                  <i class="fas fa-box sign"></i>
+                  <i class="fas fa-users fa-xl"></i>
                 </div>
               </div>
 
@@ -60,7 +60,7 @@ $Activerental_query = mysqli_query($conn, "SELECT COUNT(*) FROM rentals WHERE st
                       ?>
                     </span>
                   </div>
-                  <i class="fas fa-box sign"></i>
+                  <i class="fas fa-box-open fa-xl"></i>
                 </div>
               </div>
                   
@@ -68,20 +68,20 @@ $Activerental_query = mysqli_query($conn, "SELECT COUNT(*) FROM rentals WHERE st
               <div class= "content-inside">
                 <div class= "content-header">
                   <div class= "description">
-                    <span class="title">Items Rented</span>
+                    <span class="title">Active Orders</span>
                     <span class="No-items">24</span>
                   </div>
-                  <i class="fas fa-box sign"></i>
+                  <i class="fas fa-shopping-cart fa-xl"></i>
                 </div>
               </div>
 
               <div class= "content-inside">
                 <div class= "content-header">
                   <div class= "description">
-                    <span class="title">Outstanding</span>
+                    <span class="title">Returned Orders</span>
                     <span class="No-items">24</span>
                   </div>
-                  <i class="fas fa-box sign"></i>
+                  <i class="fas fa-undo fa-xl"></i>
                 </div>
               </div>
 
@@ -91,7 +91,7 @@ $Activerental_query = mysqli_query($conn, "SELECT COUNT(*) FROM rentals WHERE st
                     <span class="title">Total Revenue</span>
                     <span class="No-items">24</span>
                   </div>
-                  <i class="fas fa-box sign"></i>
+                  <i class="fas fa-dollar-sign fa-xl"></i>
                 </div>
               </div>
 
@@ -101,7 +101,7 @@ $Activerental_query = mysqli_query($conn, "SELECT COUNT(*) FROM rentals WHERE st
                     <span class="title">Revenue Today</span>
                     <span class="No-items">24</span>
                   </div>
-                  <i class="fas fa-box sign"></i>
+                  <i class="fas fa-calendar-day fa-xl"></i>
                 </div>
               </div>
 
@@ -111,7 +111,7 @@ $Activerental_query = mysqli_query($conn, "SELECT COUNT(*) FROM rentals WHERE st
                     <span class="title">Revenue this month</span>
                     <span class="No-items">24</span>
                   </div>
-                  <i class="fas fa-box sign"></i>
+                  <i class="fas fa-calendar-alt fa-xl"></i>
                 </div>
               </div>
 
@@ -121,7 +121,7 @@ $Activerental_query = mysqli_query($conn, "SELECT COUNT(*) FROM rentals WHERE st
                     <span class="title">Highest sales</span>
                     <span class="No-items">24</span>
                   </div>
-                  <i class="fas fa-box sign"></i>
+                  <i class="fas fa-chart-line fa-xl"></i>
                 </div>
               </div>
 

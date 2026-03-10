@@ -1,3 +1,9 @@
+<?php session_start();
+include("../config/db.php"); 
+$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +43,7 @@
 
             <div class="mb-3">
               <label class="form-label">Number of Days</label>
-              <input type="number" class="form-control" name="days" min="1" placeholder="0" readonly>
+              <input type="number"  step="1" class="form-control" min="1" placeholder="0" >
             </div>
             <div class="mb-3">
               <label class="form-label">Quantity</label>
@@ -102,12 +108,12 @@
               <input type="text" class="form-control" placeholder="123" maxlength="3" autocomplete="off" required>
             </div>
           </div>
-
+<!-- 
           <div class="d-flex gap-2 mt-2 mb-3">
             <i class="fab fa-cc-visa fa-2x" style="color:#1a1f71;"></i>
             <i class="fab fa-cc-mastercard fa-2x" style="color:#eb001b;"></i>
             <i class="fab fa-cc-paypal fa-2x" style="color:#003087;"></i>
-          </div>
+          </div> -->
 
           <button type="submit" class="btn w-100" style="background-color:#003049; color:white;">
             Pay Now

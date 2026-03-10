@@ -59,9 +59,25 @@
                   </div>
 
                   <div class="mb-3">
+                    <label class="form-label">Item Condition</label>
+                    <select name="item_condition" class="form-select">
+                        <option value="new">new</option>
+                        <option value="good">good</option>
+                        <option value="fair">fair</option>
+                        <option value="poor">poor</option>
+
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
                     <label class="form-label">Pricing</label>
                     <input type="number" name="price" step="0.5" class="form-control" placeholder="Price per day">
                     
+                  </div>
+
+                  <div class="mb-3">
+                      <label class="form-label">Item Quantity</label>
+                      <input type="number" name="item_qty" step="1" class="form-control">
                   </div>
 
                   <div class="mb-3">
