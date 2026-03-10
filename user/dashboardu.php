@@ -20,10 +20,10 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
 
 <?php include("navbaru.php"); ?>
 
-
+<header class="homepage">
       <div class="box">
         <!-- <h2 class="greeting">Hi, $active['name']</h2> -->
-        <h2 class="greeting">Hi, <?php echo $_SESSION['user_name']; ?></h2>
+        <h2 class="greeting">Hello, <?php echo $_SESSION['user_name']; ?></h2>
         <form action="#">
             <div class="typing_box">
                 <input type="text" placeholder="Search available items..." required>
@@ -34,6 +34,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
         </form>
 
       </div>
+</header>
 
 
 
@@ -81,6 +82,8 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
           </div>
 
       </section>
+
+
 
    
     

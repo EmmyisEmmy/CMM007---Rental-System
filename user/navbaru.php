@@ -29,9 +29,17 @@
             <i class="fas fa-heart"></i>
           </a>
 
-          <a href="#" class="position-relative text-dark fs-5">
+          <div class="dropdown">
+          <a href="#"  data-bs-toggle="dropdown" class="position-relative text-dark fs-5">
             <i class="fas fa-bell"></i>
           </a>
+
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item" type="button">Action</button></li>
+              <li><button class="dropdown-item" type="button">Another action</button></li>
+              <li><button class="dropdown-item" type="button">Something else here</button></li>
+            </ul>
+          </div>
 
           
           <a href="cart.php" class="position-relative text-dark fs-5">
