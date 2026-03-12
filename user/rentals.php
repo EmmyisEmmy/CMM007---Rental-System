@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Rentals</title>
   <link rel="stylesheet" href="../assets/css/userrentals.css">
-  <link rel="stylesheet" href="./assets/css/home.css">
+  <!-- <link rel="stylesheet" href="./assets/css/home.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
-
-
 </head>
 
 <body>
@@ -43,7 +41,7 @@
         <table class="table mb-0">
           <thead>
             <tr>
-              <th>#</th>
+              <th>Serial Number</th>
               <th>Item Name</th>
               <th>Category</th>
               <th>Price</th>
@@ -53,8 +51,6 @@
           </thead>
           <tbody>
             <tr><th scope="row">1</th><td>Mark</td><td>Otto</td><td>@mdo</td><td><button class="btn text-white"style="background-color:#198754;"data-bs-toggle="tab"data-bs-target="#returned-orders"type="button">Return</button></td></tr>
-            <tr><th scope="row">2</th><td>Jacob</td><td>Thornton</td><td>@fat</td><td><button class="btn text-white"style="background-color:#198754;"data-bs-toggle="tab"data-bs-target="#returned-orders"type="button">Return</button></td></tr>
-            <tr><th scope="row">3</th><td>John</td><td>Doe</td><td>@social</td><td><button class="btn text-white"style="background-color:#198754;"data-bs-toggle="tab"data-bs-target="#returned-orders"type="button">Return</button></td></tr>
             
           </tbody>
         </table>
@@ -70,9 +66,9 @@
         <table class="table mb-0">
           <thead>
             <tr>
-              <th>#</th>
+              <th>Serial Number</th>
               <th>Item Name</th>
-              <th>Categoryt</th>
+              <th>Category</th>
               <th>Price</th>
               <th>Date Rented</th>
               <th>Date Returned</th>

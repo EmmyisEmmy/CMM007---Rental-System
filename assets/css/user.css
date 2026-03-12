@@ -137,8 +137,8 @@ header{
     width: 100%;
     max-width: 800px;
     padding:20px;
-    background: white; 
-    border-radius: 20px;
+    /* background: red; 
+    border-radius: 20px; */
 }
 
 .typing_box {
@@ -181,8 +181,8 @@ header{
 
 .greeting {
     font-size: 24px;          
-    font-weight: 500;         
-    color: #333;              
+    font-weight: 700;         
+    /* color: #333;               */
     margin-bottom: 30px;      
     text-align: center;      
 }

@@ -11,7 +11,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard</title>
   <link rel="stylesheet" href="../assets/css/user.css">
-  <link rel="stylesheet" href="./assets/css/home.css">
+  <!-- <link rel="stylesheet" href="../assets/css/home.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -67,7 +67,7 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
                 
                 <div class="user_decision">
                   <a href= "items.php" class="view_more">More Details</a>
-                  <a href="Order.php"><button class= "rent-button">Rent</button></a>
+                  <a href="Order.php?id=<?php echo $row['id']; ?>"><button class= "rent-button">Rent</button></a>
                   <form action="../config/auth.php" method="POST">
                       <input type="hidden" name="item_id" value="<?php echo $row['id'];?>">
                       <button type= "submit" class="addcart" name="cart_add"><i class="fas fa-shopping-cart"></i></button>
@@ -111,6 +111,8 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
       })
     }
   </script>
+
+  <?php include("../footer.php"); ?>
 
 </body>
 </html>

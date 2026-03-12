@@ -12,6 +12,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="../assets/css/orderpage.css">
+  <link rel="stylesheet" href="../assets/css/home.css">
   <title>Order</title>
 </head>
 <body>
@@ -45,14 +46,10 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
               <label class="form-label">Number of Days</label>
               <input type="number"  step="1" class="form-control" min="1" placeholder="0" >
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
               <label class="form-label">Quantity</label>
-              <div class="d-flex align-items-center gap-3">
-                <button type="button" class="btn" style="background-color:#003049; color:white;" onclick="changeQty(-1)">−</button>
-                <span id="qty-display">1</span>
-                <button type="button" class="btn" style="background-color:#003049; color:white;" onclick="changeQty(1)">+</button>
-                <input type="hidden" name="quantity" id="quantity" value="1">
-              </div>
+              <input type="number"  step="1" class="form-control" min="1" placeholder="0" >
+
             </div>
           </form>
         </div>
@@ -126,5 +123,6 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <?php include("../footer.php"); ?>
 </body>
 </html>
