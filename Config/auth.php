@@ -68,7 +68,7 @@ if (isset($_POST["login_button"])) {
     $role = $_POST['role'];
 
     $outcome = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND role ='$role'");
-    $active = mysqli_fetch_assoc($checkEmail);
+    $active = mysqli_fetch_assoc($outcome);
 
     if (mysqli_num_rows($outcome) == 1 ) {
         // $_SESSION['password'] = $active['password'];

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center" href="dashboardu.php">
         <img src="../assets/image/logo_new.png" alt="Orientals Logo" width="40" height="40" class="me-2">
         <span>Orientals</span>
       </a>

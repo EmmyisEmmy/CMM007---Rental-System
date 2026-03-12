@@ -1,6 +1,8 @@
 <?php session_start();
 include("../config/db.php"); 
-$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+$id = $_GET['id'];
+$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$id'");
+$row = mysqli_fetch_assoc($table_query)
 ?>
 
 
@@ -30,10 +32,10 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
         <div class="section-card">
 
             <div class="d-flex align-items-center gap-3 mb-4">
-              <img src="../assets/image/laptop.jpg" alt="Item" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
+              <img src=".#" alt="Item" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
               <div>
-                <h4 style="color:#003049; font-weight:700; margin:0;">HP Laptop</h4>
-                <p style="color:#888; font-size:13px; margin:0;">Electronics</p>
+                <h4 style="color:#003049; font-weight:700; margin:0;"><?php echo $row['title']; ?></h4>
+                <p style="color:#888; font-size:13px; margin:0;"><?php echo $row['category']; ?></p>
               </div>
             </div>
 
@@ -44,11 +46,11 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
 
             <div class="mb-3">
               <label class="form-label">Number of Days</label>
-              <input type="number"  step="1" class="form-control" min="1" placeholder="0" >
+              <input type="number"  oninput="update()" id="days" step="1" class="form-control" min="1" placeholder="0" >
             </div>
             <div class="mb-1">
               <label class="form-label">Quantity</label>
-              <input type="number"  step="1" class="form-control" min="1" placeholder="0" >
+              <input type="number"  oninput="update()" id="qty" step="1" class="form-control" min="1" placeholder="0" >
 
             </div>
           </form>
@@ -59,24 +61,24 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
           <h3>Order Summary</h3>
           <div class="summary-row">
             <span>Price per day</span>
-            <span>$5</span>
+            <span><?php echo $row['price']; ?></span>
           </div>
-          <div class="summary-row">
+          <div class="summary-row" >
             <span>Number of days</span>
             <span id="summary-days">0</span>
           </div>
           <div class="summary-row">
             <span>Quantity</span>
-            <span id="summary-qty">1</span>
+            <span id="summary-qty"></span>
           </div>
           <div class="summary-row">
             <span>Delivery</span>
-            <span>$2</span>
+            <span>2</span>
           </div>
           <hr>
           <div class="summary-row total">
             <span>Total</span>
-            <span id="summary-total">$0</span>
+            <span id="summary-total">0</span>
           </div>
         </div>
 
@@ -123,6 +125,31 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+    function update() {
+
+      const qty = document.getElementById("qty");
+      const sumqty = document.getElementById("summary-qty");
+      sumqty.textContent = qty.value;
+
+
+      const days = document.getElementById("days")
+      const sumdays = document.getElementById("summary-days")
+      sumdays.textContent = days.value;
+      
+      const item_price = <?php echo $row['price']; ?>;
+      const total = document.getElementById("summary-total");
+      total.textContent =  parseInt(sumqty.textContent) * parseInt(sumdays.textContent) * item_price;
+
+
+      
+    }
+    
+
+  </script>
+  
     <?php include("../footer.php"); ?>
 </body>
 </html>
