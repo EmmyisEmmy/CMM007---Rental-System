@@ -67,11 +67,14 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
                 
                 <div class="user_decision">
                   <a href= "items.php" class="view_more">More Details</a>
-                  <a href="Order.php?id=<?php echo $row['id']; ?>"><button class= "rent-button">Rent</button></a>
-                  <form action="../config/auth.php" method="POST">
-                      <input type="hidden" name="item_id" value="<?php echo $row['id'];?>">
-                      <button type= "submit" class="addcart" name="cart_add"><i class="fas fa-shopping-cart"></i></button>
-                  </form>
+                  <div class="one-line">
+                    <a href="Order.php?id=<?php echo $row['id']; ?>"><button class= "rent-button">Rent</button></a>
+                    <form action="../config/auth.php" method="POST">
+                        <input type="hidden" name="item_id" value="<?php echo $row['id'];?>">
+                        <button type= "submit" class="addcart" name="cart_add"><i class="fas fa-shopping-cart"></i></button>
+                    </form>
+
+                  </div>
                   
    
                 </div>

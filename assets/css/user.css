@@ -266,6 +266,13 @@ header{
 
 
 
+
+}
+
+.one-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 
@@ -308,7 +315,7 @@ header{
 
 .new-box .user_decision {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
   align-items: center;
   margin-top: 10px;
 }
