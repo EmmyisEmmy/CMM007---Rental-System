@@ -53,9 +53,9 @@
 
               </li>
               <li>
-                <a href="#">
+                <a href="activerentals.php">
                   <i class="fas fa-box"></i>
-                  <span>Active Rentals</span>
+                  <span>Active User Rentals</span>
 
                 </a>
 
