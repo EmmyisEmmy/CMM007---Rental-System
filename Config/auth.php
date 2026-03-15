@@ -175,6 +175,42 @@ if (isset($_POST["item_delete"])) {
 
 }
 
+if (isset($_POST["order_placed"])) {
+
+    // var_dump($_POST);
+    // exit(); 
+
+    $item_id = $_POST['item_id'];
+    $user_id = $_POST['user_id'];
+    $quantity = $_POST['qty'];
+    $days = $_POST['days'];
+
+    $outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
+    $active = mysqli_fetch_assoc($outcome);
+    $price= $active['price'];
+    $total = $quantity * $days * $price;
+   
+    
+    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total)
+                VALUES ('$user_id','$item_id','$quantity','$days', $total)";
+    $query_table = mysqli_query($conn, $query);
+    
+    if ($query_table) {
+        
+
+        $_SESSION['order_success'] = "Active order";
+        header("Location: ../user/successful.php");
+        exit();
+
+    } else {
+        $_SESSION['item_failure'] = "order_failed";
+        header("Location: ../user/order.php");
+        exit();
+    }
+
+
+}
+
 if (isset($_POST["item_add"])) {
 
     $id_item = $_POST['id_item'];

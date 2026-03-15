@@ -25,6 +25,10 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
       padding: 100px;
     }
 
+    .back-button{
+      padding: 40px;
+    }
+
   </style>
   
 </head>
@@ -37,7 +41,9 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
             <p>Congratulations! Your rental is on the way.</p>
             <!-- <i class="fas fa-paper-plane"></i> -->
              <img src="../assets/image/sucess.png" style="width: 150px; height: 150px;" alt="success">
-            <a href="dashboardu.php"><button type="button" class="btn btn-primary btn-lg">Go back</button></a>
+            <div class="back-button">
+                <a href="dashboardu.php"><button type="button" class="btn btn-primary btn-lg">Go back</button></a>
+            </div>
       </div>
 </body>
 </html>

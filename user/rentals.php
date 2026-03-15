@@ -1,6 +1,7 @@
 <?php session_start();
 include("../config/db.php"); 
-$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+// $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+$table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{$_SESSION['user_id']}'");
 ?>
 
 
@@ -47,17 +48,34 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
         <table class="table mb-0">
           <thead>
             <tr>
-              <th>Serial Number</th>
-              <th>Item Name</th>
-              <th>Category</th>
-              <th>Price</th>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>days</th>
+              <th>total</th>
               <th>Date Rented</th>
-              <th>Date Rented</th>
+              <th>Due Date</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr><th scope="row">1</th><td>Mark</td><td>Otto</td><td>@mdo</td><td><button class="btn text-white"style="background-color:#198754;"data-bs-toggle="tab"data-bs-target="#returned-orders"type="button">Return</button></td></tr>
-            
+              <?php
+              while ($row = mysqli_fetch_assoc($table_query)) { ?>
+                  <tr>
+                      <td><?php echo $row['item_id']; ?></td>
+                      <td><?php echo $row['quantity']; ?></td>
+                      <td><?php echo $row['days']; ?></td>
+                      <td><?php echo $row['total']; ?></td>
+                      <td><?php echo $row['total']; ?></td>
+                      <td><?php echo $row['total']; ?></td>
+                      <td>
+                        
+                        <form action= "../config/auth.php" method="POST">
+                        <button type="submit" name= "item_add" class="btn btn-success btn-sm">Return</button>
+                        <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
+                        </form>
+                      </td>
+                  </tr>       
+              <?php } ?>
           </tbody>
         </table>
       </div>

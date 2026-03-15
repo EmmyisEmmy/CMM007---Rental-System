@@ -16,11 +16,14 @@ $row = mysqli_fetch_assoc($table_query);
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/orderpage.css">
   <link rel="stylesheet" href="../assets/css/home.css">
+  <link rel="stylesheet" href="../assets/css/footer.css">
   <title>Order</title>
 </head>
 <body>
 
   <?php include("navbaru.php"); ?>
+
+<form action="../config/auth.php" method="POST">
 
   <div class="order-page">
 
@@ -29,11 +32,11 @@ $row = mysqli_fetch_assoc($table_query);
 
       <div class="left-section">
 
-      <form action="../config/auth.php" method="POST">
+
               <div class="section-card">
 
                   <div class="d-flex align-items-center gap-3 mb-4">
-                    <img src=".#" alt="Item" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
+                    <img src="../assets/image/<?php echo $row['image'];?>" alt="Item" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
                     <div>
                       <h4 style="color:#003049; font-weight:700; margin:0;"><?php echo $row['title']; ?></h4>
                       <p style="color:#888; font-size:13px; margin:0;"><?php echo $row['category']; ?></p>
@@ -54,7 +57,6 @@ $row = mysqli_fetch_assoc($table_query);
                     <input type="number"  name= "qty" oninput="update()" id="qty" step="1" class="form-control" min="1" placeholder="0" >
 
                   </div>
-                </form>
               </div>
 
 
@@ -108,18 +110,17 @@ $row = mysqli_fetch_assoc($table_query);
                     <input type="text" class="form-control" placeholder="123" maxlength="3" autocomplete="off" required>
                   </div>
                 </div>
-
-                <a href="successful.php">
-                    <button type="submit" name="order" class="btn w-100" style="background-color:#003049; color:white;">
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                    <input type="hidden" name="item_id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" name="order_placed" class="btn w-100" style="background-color:#003049; color:white;">
                       Pay Now
                     </button>
-                </a>
 
               </div>
-            </div>
-      </form>  
-    </div>
+            </div>  
+        </div>
   </div>
+</form>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
