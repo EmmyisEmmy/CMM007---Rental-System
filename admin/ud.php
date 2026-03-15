@@ -68,7 +68,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status != 'delet
                         
                         <form action= "../config/auth.php" method="POST">
                         <button type="submit" name= "item_delete" class="btn btn-danger btn-sm">Delete</button>
-                        <button type="button" class="btn btn-success btn-sm">Edit</button>
+                        <a href="edit.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-success btn-sm">Edit</button></a>
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
                       </td>

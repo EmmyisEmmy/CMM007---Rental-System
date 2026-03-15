@@ -2,7 +2,7 @@
 include("../config/db.php"); 
 $id = $_GET['id'];
 $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$id'");
-$row = mysqli_fetch_assoc($table_query)
+$row = mysqli_fetch_assoc($table_query);
 ?>
 
 

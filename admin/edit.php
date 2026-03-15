@@ -1,5 +1,9 @@
 <?php session_start(); ?>
-<?php include("../config/db.php"); ?>
+<?php include("../config/db.php"); 
+$id = $_GET['id'];
+$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$id'");
+$row = mysqli_fetch_assoc($table_query);
+?>
 
 
 <!DOCTYPE html>
@@ -22,7 +26,7 @@
         <div class="content">
           <div class="top">
             <div class="title">
-              <h3>Create New Post</h3>
+              <h3>Update Your Post</h3>
   
             </div>
           </div>
@@ -47,25 +51,25 @@
                     <label class="form-label">Category</label>
                     <select name="category" class="form-select">
                         <option selected>Category</option>
-                        <option value="Construction">Construction</option>
-                        <option value="Tools & DIY">Tools & DIY</option>
-                        <option value="Electronics">Electronics & Gadgets</option>
-                        <option value="Sports & Recreation">Sports & Recreation</option>
-                        <option value="Automative & Transportation">Automative & Transportation</option>
-                        <option value="Office & Work">Office & Work</option>
-                        <option value="Gardening & Landscaping">Gardening & Landscaping</option>
-                        <option value="Safety & Protective Equipment">Safety & Protective Equipment</option>
-
+                        <option value="Construction"<?php if ($row["category"] == "Construction") echo "selected"; ?>>Construction</option>
+                        <option value="Tools & DIY"<?php if ($row["category"] == "Tools & DIY") echo "selected"; ?>>Tools & DIY</option>
+                        <option value="Electronics"<?php if ($row["category"] == "Electronics") echo "selected"; ?>>Electronics & Gadgets</option>
+                        <option value="Sports & Recreation"<?php if ($row["category"] == "Sports & Recreation") echo "selected"; ?>>Sports & Recreation</option>
+                        <option value="Automative & Transportation"<?php if ($row["category"] == "Automative & Transportation") echo "selected"; ?>>Automative & Transportation</option>
+                        <option value="Office & Work"<?php if ($row["category"] == "Office & Work") echo "selected"; ?>>Office & Work</option>
+                        <option value="Gardening & Landscaping"<?php if ($row["category"] == "Gardening & Landscaping") echo "selected"; ?>>Gardening & Landscaping</option>
+                        <option value="Safety & Protective Equipment"<?php if ($row["category"] == "Safety & Protective Equipment") echo "selected"; ?>>Safety & Protective Equipment</option>
+ 
                     </select>
                   </div>
 
                   <div class="mb-3">
                     <label class="form-label">Item Condition</label>
                     <select name="item_condition" class="form-select">
-                        <option value="new">new</option>
-                        <option value="good">good</option>
-                        <option value="fair">fair</option>
-                        <option value="poor">poor</option>
+                        <option value="new"<?php if ($row["item_condition"] == "new") echo "selected"; ?>>new</option>
+                        <option value="good"<?php if ($row["item_condition"] == "good") echo "selected"; ?>>good</option>
+                        <option value="fair"<?php if ($row["item_condition"] == "fair") echo "selected"; ?>>fair</option>
+                        <option value="poor"<?php if ($row["item_condition"] == "poor") echo "selected"; ?>>poor</option>
 
                     </select>
                   </div>
@@ -87,6 +91,7 @@
                   </div>
 
                   <!-- <form action="../config/auth.php" method="POST"> -->
+                      <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                       <button type="submit" name="item_update" class="btn btn-primary">Update Post</button>
                  
                   

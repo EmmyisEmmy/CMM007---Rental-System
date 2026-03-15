@@ -194,6 +194,35 @@ if (isset($_POST["item_add"])) {
 
 }
 
+if (isset($_POST["item_update"])) {
+    
+    $title = $_POST['title'];
+    $item_condition = $_POST['item_condition'];
+    $item_qty = $_POST['item_qty'];
+    $description = $_POST['description'];
+    $specification = $_POST['specification'];
+    $category = $_POST['category'];
+    $price = $_POST['price'];
+    $image = $_FILES['image']['name'];
+
+    $id_item = $_POST['id_item'];
+    $query = "UPDATE rentals SET title= '$title', item_condition='$item_condition', item_qty='$item_qty', description='$description', specification='$specification', category='$category', price='$price', image='$image' WHERE id = '$id_item'";
+    $query_table = mysqli_query($conn, $query);
+    
+    if ($query_table) {
+        $_SESSION['edit_success'] = "Updated";
+        header("Location: ../admin/ud.php");
+        exit();
+
+    } else {
+        $_SESSION['updating_failure'] = "updatingfailed";
+        header("Location: ../admin/ud.php");
+        exit();
+    }
+
+
+
+}
 
 ?>
 
