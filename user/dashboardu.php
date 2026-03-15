@@ -11,7 +11,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard</title>
   <link rel="stylesheet" href="../assets/css/user.css">
-  <link rel="stylesheet" href="../assets/css/home.css">
+  <link rel="stylesheet" href="../assets/css/footer.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -39,19 +39,21 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
 
 
 
-      <h4 class="available">Now Available to Rent</h4>
+      <h5 class="available">Now Available to Rent</h5>
 
       <div class="filter-buttons text-center mb-4">
           <button class="btn btn-outline-dark me-2" onclick="filterItems('all')">All</button>
           <button class="btn btn-outline-dark me-2" onclick="filterItems('Construction')">Construction</button>
           <button class="btn btn-outline-dark me-2" onclick="filterItems('Tools & DIY')">Tools & DIY</button>
-          <button class="btn btn-outline-dark me-2" onclick="filterItems('Electronics & Gadgets')">Electronics & Gadgets</button>
+          <button class="btn btn-outline-dark me-2" onclick="filterItems('Electronics')">Electronics & Gadgets</button>
           <button class="btn btn-outline-dark me-2" onclick="filterItems('Sports & Recreation')">Sports & Recreation</button>
           <button class="btn btn-outline-dark me-2" onclick="filterItems('Automative & Transportation')">Automative & Transportation</button>
           <button class="btn btn-outline-dark me-2" onclick="filterItems('Office & Work')">Office & Work</button>
           <button class="btn btn-outline-dark me-2" onclick="filterItems('Gardening & Landscaping')">Gardening & Landscaping</button>
           <button class="btn btn-outline-dark me-2" onclick="filterItems('Safety & Protective Equipment')">Safety & Protective Equipment</button>
       </div>
+
+      
 
       <section class="sections">
           <div class= "items">
@@ -63,6 +65,7 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
               <div class="title">
                   <span><?php echo $row['title'];?></span>
                   <span class="price"><?php echo $row['price'];?></span>
+                  <!-- <span class="price"><?php echo $row['category'];?></span> -->
               </div>
               <div class="new-box">
                 

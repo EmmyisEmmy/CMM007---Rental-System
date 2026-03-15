@@ -184,7 +184,9 @@ header{
     font-weight: 700;         
     /* color: #333;               */
     margin-bottom: 30px;      
-    text-align: center;      
+    text-align: center;  
+    color: black;
+    
 }
 
 
@@ -293,7 +295,7 @@ header{
 .homepage {
 
   height:450px;
-  background-image: url(../Image/background_homepage.jpg);
+  background-image: url(../Image/register.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

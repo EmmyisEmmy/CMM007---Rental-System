@@ -29,19 +29,19 @@
           <a href="#" class="position-relative text-dark fs-5">
             <i class="fas fa-heart"></i>
           </a>
-          <div class="notification_resize">
+          <!-- <div class="notification_resize">
               <div class="dropdown">
                   <a href="#"  data-bs-toggle="dropdown" class="position-relative text-dark fs-5">
                     <i class="fas fa-bell"></i>
-                  </a>
+                  </a> -->
 
-                <ul class="dropdown-menu notification_resize">
-                  <li><button class="dropdown-item" type="button">Action</button></li>
-                  <li><button class="dropdown-item" type="button">Another action</button></li>
-                  <li><button class="dropdown-item" type="button">Something else here</button></li>
-                </ul>
+                  <!-- <ul class="dropdown-menu notification_resize">
+                    <li><button class="dropdown-item" type="button">Action</button></li>
+                    <li><button class="dropdown-item" type="button">Another action</button></li>
+                    <li><button class="dropdown-item" type="button">Something else here</button></li>
+                  </ul>
               </div>
-          </div>
+          </div> -->
 
 
           

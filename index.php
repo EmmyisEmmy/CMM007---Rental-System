@@ -62,46 +62,46 @@
             <div class= "items">
 
                     <div class="category">
-                      <i class="fas fa-building"></i>
+                      <img src="./assets/image/construction.png" style= "width: 50px; height: 50px;">
                       <h3>Construction</h3>
                     </div>
 
 
                     <div class="category">
-                      <i class="fas fa-screwdriver-wrench"></i>
+                       <img src="./assets/image/tools.png" style= "width: 50px; height: 50px;">
                       <h3>Tools & DIY</h3>
                     </div>
 
                     <div class="category">
-                      <i class="fas fa-camera"></i>
+                      <img src="./assets/image/electronics.png" style= "width: 50px; height: 50px;">
                       <h3>Electronics</h3>
                     </div>
 
                     <div class="category">
-                      <i class="fas fa-glass-cheers"></i>
+                      <img src="./assets/image/party.png" style= "width: 50px; height: 50px;">
                       <h3>Party & Event</h3>
                     </div>
 
                     <div class="category">
-                      <i class="fas fa-bicycle"></i>
+                      <img src="./assets/image/sports.png" style= "width: 50px; height: 50px;">
                       <h3>Sports & Recreation</h3>
                     </div>
 
                     <div class="category">
-                      <i class="fas fa-car"></i>
+                      <img src="./assets/image/automobile.png" style= "width: 50px; height: 50px;">
                       <h3>Automative & Transportation</h3>
                     </div>
 
 
 
                     <div class="category">
-                      <i class="fas fa-laptop"></i>
+                      <img src="./assets/image/office.png" style= "width: 50px; height: 50px;">
                       <h3>Office & Work Equipment</h3>
                     </div>
 
                     <div class="category">
-                      <i class="fas fa-leaf"></i>
-                      <h3>Gardening & Lnadscaping</h3>
+                      <img src="./assets/image/gardening.png" style= "width: 50px; height: 50px;">
+                      <h3>Gardening & Landscaping</h3>
                     </div>
 
                     <div class="category">
@@ -180,18 +180,17 @@
         <div class="modal-content">
 
           <div class="modal-header">
-            <h5 class="modal-title">Customer Support</h5>
+            <h5 class="modal-title">Frequently Asked Questions</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
 
           <div class="modal-body">
-            <p>Send us a quick message</p>
-            <input type="text" class="form-control mb-3" placeholder="Type your message...">
+
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Accordion Item #1
+                    Can I rent more than one item at once?
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
@@ -203,7 +202,7 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Accordion Item #2
+                    Can I return broken items?
                   </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -215,7 +214,7 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    FAQ3
+                    What's your return policy?
                   </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">

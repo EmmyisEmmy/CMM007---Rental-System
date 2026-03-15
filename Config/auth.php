@@ -134,6 +134,7 @@ if (isset($_POST["item_publish"])) {
     $category= $_POST['category'];
     $price= $_POST['price'];
     $image = $_FILES['image']['name'];
+    $image_tmp = $_FILES['image']['tmp_name'];
 
     $query = "INSERT INTO rentals (title, description, specification, category, price, image, item_condition, item_qty, created_at)
             VALUES ('$title','$description','$specification','$category', '$price', '$image', '$item_condition', '$item_qty','$created_at')";

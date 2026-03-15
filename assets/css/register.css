@@ -30,13 +30,13 @@ body{
 
 }
 
-.graphics_1 {
+/* .graphics_1 {
   width: 50%;
   background-image: url("../Image/Login_image.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
+} */
 
 .graphics_2 {
   width: 50%;
@@ -149,7 +149,7 @@ body{
 
 .graphics_1 {
   width: 50%;
-  background-image: url("../Image/register.jpg");
+  background-image: url("../Image/Login_image.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
