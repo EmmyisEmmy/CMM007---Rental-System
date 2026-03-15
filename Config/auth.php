@@ -189,10 +189,15 @@ if (isset($_POST["order_placed"])) {
     $active = mysqli_fetch_assoc($outcome);
     $price= $active['price'];
     $total = $quantity * $days * $price;
-   
+
+    // $title_outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
+    // $active_title = mysqli_fetch_assoc($title_outcome);
+    $title = $active['title'];
+
     
-    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total)
-                VALUES ('$user_id','$item_id','$quantity','$days', $total)";
+    
+    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title)
+                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title')";
     $query_table = mysqli_query($conn, $query);
     
     if ($query_table) {

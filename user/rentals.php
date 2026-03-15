@@ -61,7 +61,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
               <?php
               while ($row = mysqli_fetch_assoc($table_query)) { ?>
                   <tr>
-                      <td><?php echo $row['item_id']; ?></td>
+                      <td><?php echo $row['title']; ?></td>
                       <td><?php echo $row['quantity']; ?></td>
                       <td><?php echo $row['days']; ?></td>
                       <td><?php echo $row['total']; ?></td>
