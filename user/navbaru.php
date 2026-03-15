@@ -11,6 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboardu.php">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="Track.php">Order Tracking</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Orders</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

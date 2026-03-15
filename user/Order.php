@@ -29,99 +29,95 @@ $row = mysqli_fetch_assoc($table_query);
 
       <div class="left-section">
 
+      <form action="../config/auth.php" method="POST">
+              <div class="section-card">
 
-        <div class="section-card">
+                  <div class="d-flex align-items-center gap-3 mb-4">
+                    <img src=".#" alt="Item" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
+                    <div>
+                      <h4 style="color:#003049; font-weight:700; margin:0;"><?php echo $row['title']; ?></h4>
+                      <p style="color:#888; font-size:13px; margin:0;"><?php echo $row['category']; ?></p>
+                    </div>
+                  </div>
 
-            <div class="d-flex align-items-center gap-3 mb-4">
-              <img src=".#" alt="Item" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-              <div>
-                <h4 style="color:#003049; font-weight:700; margin:0;"><?php echo $row['title']; ?></h4>
-                <p style="color:#888; font-size:13px; margin:0;"><?php echo $row['category']; ?></p>
+                  <hr>
+
+                <h3>Rental Details</h3>
+                
+
+                  <div class="mb-3">
+                    <label class="form-label">Number of Days</label>
+                    <input type="number"  name="days" oninput="update()" id="days" step="1" class="form-control" min="1" placeholder="0" >
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label">Quantity</label>
+                    <input type="number"  name= "qty" oninput="update()" id="qty" step="1" class="form-control" min="1" placeholder="0" >
+
+                  </div>
+                </form>
+              </div>
+
+
+              <div class="section-card mt-3">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                  <span>Price per day</span>
+                  <span><?php echo $row['price']; ?></span>
+                </div>
+                <div class="summary-row" >
+                  <span>Number of days</span>
+                  <span id="summary-days">0</span>
+                </div>
+                <div class="summary-row">
+                  <span>Quantity</span>
+                  <span id="summary-qty"></span>
+                </div>
+                <div class="summary-row">
+                  <span>Delivery</span>
+                  <span>2</span>
+                </div>
+                <hr>
+                <div class="summary-row total">
+                  <span>Total</span>
+                  <span id="summary-total">0</span>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="right-section">
+              <div class="section-card">
+                <h3>Payment Details</h3>
+
+                <div class="mb-3">
+                  <label class="form-label">Cardholder Name</label>
+                  <input type="text" class="form-control" placeholder="John Doe" autocomplete="off" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Card Number</label>
+                  <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="off" required>
+                </div>
+                <div class="row">
+                  <div class="col-6 mb-3">
+                    <label class="form-label">Expiry Date</label>
+                    <input type="text" class="form-control" placeholder="MM/YY" maxlength="5" autocomplete="off" required>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <label class="form-label">CVV</label>
+                    <input type="text" class="form-control" placeholder="123" maxlength="3" autocomplete="off" required>
+                  </div>
+                </div>
+
+                <a href="successful.php">
+                    <button type="submit" name="order" class="btn w-100" style="background-color:#003049; color:white;">
+                      Pay Now
+                    </button>
+                </a>
+
               </div>
             </div>
-
-            <hr>
-
-          <h3>Rental Details</h3>
-          <form>
-
-            <div class="mb-3">
-              <label class="form-label">Number of Days</label>
-              <input type="number"  oninput="update()" id="days" step="1" class="form-control" min="1" placeholder="0" >
-            </div>
-            <div class="mb-1">
-              <label class="form-label">Quantity</label>
-              <input type="number"  oninput="update()" id="qty" step="1" class="form-control" min="1" placeholder="0" >
-
-            </div>
-          </form>
-        </div>
-
-
-        <div class="section-card mt-3">
-          <h3>Order Summary</h3>
-          <div class="summary-row">
-            <span>Price per day</span>
-            <span><?php echo $row['price']; ?></span>
-          </div>
-          <div class="summary-row" >
-            <span>Number of days</span>
-            <span id="summary-days">0</span>
-          </div>
-          <div class="summary-row">
-            <span>Quantity</span>
-            <span id="summary-qty"></span>
-          </div>
-          <div class="summary-row">
-            <span>Delivery</span>
-            <span>2</span>
-          </div>
-          <hr>
-          <div class="summary-row total">
-            <span>Total</span>
-            <span id="summary-total">0</span>
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="right-section">
-        <div class="section-card">
-          <h3>Payment Details</h3>
-
-          <div class="mb-3">
-            <label class="form-label">Cardholder Name</label>
-            <input type="text" class="form-control" placeholder="John Doe" autocomplete="off" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Card Number</label>
-            <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="off" required>
-          </div>
-          <div class="row">
-            <div class="col-6 mb-3">
-              <label class="form-label">Expiry Date</label>
-              <input type="text" class="form-control" placeholder="MM/YY" maxlength="5" autocomplete="off" required>
-            </div>
-            <div class="col-6 mb-3">
-              <label class="form-label">CVV</label>
-              <input type="text" class="form-control" placeholder="123" maxlength="3" autocomplete="off" required>
-            </div>
-          </div>
-<!-- 
-          <div class="d-flex gap-2 mt-2 mb-3">
-            <i class="fab fa-cc-visa fa-2x" style="color:#1a1f71;"></i>
-            <i class="fab fa-cc-mastercard fa-2x" style="color:#eb001b;"></i>
-            <i class="fab fa-cc-paypal fa-2x" style="color:#003087;"></i>
-          </div> -->
-
-          <button type="submit" class="btn w-100" style="background-color:#003049; color:white;">
-            Pay Now
-          </button>
-
-        </div>
-      </div>
-
+      </form>  
     </div>
   </div>
 
