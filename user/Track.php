@@ -1,3 +1,9 @@
+<?php session_start();
+include("../config/db.php"); 
+$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <!-- <link rel="stylesheet" href="../assets/css/orderpage.css">
   <link rel="stylesheet" href="../assets/css/home.css"> -->
-  <!-- <link rel="stylesheet" href="../assets/css/user.css"> -->
+
 
     <style>
 
@@ -30,8 +36,10 @@
   <div class="tracker">
     <img src="../assets/image/delivery.png" style="width: 150px; height: 150px;" alt="Orientals Logo">
      <h3>Track Your Rental</h3>
-     
+     <input type= "text" placeholder="Order Number here...">
+     <div class="selection"><p>Search</p><span></span></div>
   </div>
+
 
 </div>
 </body>

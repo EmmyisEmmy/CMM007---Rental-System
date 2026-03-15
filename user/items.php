@@ -1,3 +1,7 @@
+<?php session_start();
+include("../config/db.php"); 
+$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+?>
 
 
 <!DOCTYPE html>

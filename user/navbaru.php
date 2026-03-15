@@ -23,37 +23,42 @@
           </ul>
         </li>
       </ul>
-        <div class="d-flex align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3 pe-3">
 
-          
-          <a href="#" class="position-relative text-dark fs-5">
-            <i class="fas fa-heart"></i>
-          </a>
-          <!-- <div class="notification_resize">
-              <div class="dropdown">
-                  <a href="#"  data-bs-toggle="dropdown" class="position-relative text-dark fs-5">
-                    <i class="fas fa-bell"></i>
-                  </a> -->
-
-                  <!-- <ul class="dropdown-menu notification_resize">
-                    <li><button class="dropdown-item" type="button">Action</button></li>
-                    <li><button class="dropdown-item" type="button">Another action</button></li>
-                    <li><button class="dropdown-item" type="button">Something else here</button></li>
-                  </ul>
-              </div>
-          </div> -->
-
-
-          
           <a href="cart.php" class="position-relative text-dark fs-5">
-            <i class="fas fa-shopping-cart"></i>
+             <img src="../assets/image/addcart.png" style= "width: 25px; height: 25px;">
           </a>
+          <a href="#" class="position-relative text-dark fs-5">
+            <img src="../assets/image/notification.jpg" style= "width: 25px; height: 25px;">
+          </a>
+          <a href="#" class="position-relative text-dark fs-5">
+            <img src="../assets/image/heart.png" style= "width: 25px; height: 25px;">
+          </a>
+
+          <div class="dropdown pe-2">
+              <a href="#" class="position-relative text-dark fs-5" data-bs-toggle="dropdown">
+                <img src="../assets/image/avatar.png" style= "width: 35px; height: 35px;">
+                <span><?php echo $_SESSION['user_name']; ?></span>
+
+              </a>
+                  <ul class="dropdown-menu dropdown-menu-end notification_resize">
+                    <li> User id: </li><hr>
+                    <li><button class="dropdown-item" type="button">Profile</button></li>
+                    <li><button class="dropdown-item" type="button">Change Language</button></li>
+                    <li><button class="dropdown-item" type="button">Log Out</button></li>
+                  </ul>
+          </div>
+
+
+
+          
+
 
          
-          <form class="d-flex" role="search">
+          <!-- <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn" type="submit" style="background-color: #003049; color: white;">Search</button>
-          </form>
+          </form> -->
 
         </div>
       

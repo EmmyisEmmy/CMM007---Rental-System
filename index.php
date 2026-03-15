@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="category">
-                      <i class="fas fa-shield-alt"></i>
+                      <img src="./assets/image/safety.jpg" style= "width: 50px; height: 50px;">
                       <h3>Safety & Protective Equipment</h3>
                     </div>
               

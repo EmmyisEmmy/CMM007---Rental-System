@@ -61,12 +61,13 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
 while ($row = mysqli_fetch_assoc($table_query)) { ?>
             <div class="category" data-category="<?php echo $row['category'];?>">
               <div class="image"><img src="../assets/image/<?php echo $row['image'];?>"></div>
-              <div class="description"><?php echo $row['description'];?></div>
               <div class="title">
                   <span><?php echo $row['title'];?></span>
                   <span class="price"><?php echo $row['price'];?></span>
                   <!-- <span class="price"><?php echo $row['category'];?></span> -->
               </div>
+              <div class="description"><?php echo $row['description'];?></div>
+
               <div class="new-box">
                 
                 <div class="user_decision">
