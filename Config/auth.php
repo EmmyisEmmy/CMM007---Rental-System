@@ -203,7 +203,7 @@ if (isset($_POST["order_placed"])) {
     if ($query_table) {
         
 
-        $_SESSION['order_success'] = "Active order";
+        $_SESSION['order_success'] = "Good News! You placed an order";
         header("Location: ../user/successful.php");
         exit();
 

@@ -32,9 +32,12 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
   </style>
   
 </head>
+
 <body>
-  
+
+
   <?php include("navbaru.php"); ?>
+  
 
       <div class="rental_success">
             <h2>Your Payment is Succesful</h2>
@@ -45,5 +48,8 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
                 <a href="dashboardu.php"><button type="button" class="btn btn-primary btn-lg">Go back</button></a>
             </div>
       </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<?php include("../notification.php"); ?>
+
 </body>
 </html>

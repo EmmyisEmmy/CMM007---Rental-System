@@ -10,7 +10,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Rentals</title>
+  <title>Order History</title>
   <link rel="stylesheet" href="../assets/css/userrentals.css">
   <!-- <link rel="stylesheet" href="./assets/css/home.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -25,25 +25,11 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
 <!-- Main content container -->
 <div class="container mt-5">
 
-  <ul class="nav nav-pills gap-3" id="orderTabs" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active-orders" type="button">
-        Active Orders
-      </button>
-    </li>
-
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="returned-tab" data-bs-toggle="tab" data-bs-target="#returned-orders" type="button">
-        Returned Orders
-      </button>
-    </li>
-  </ul>
-  <div class="tab-content mt-3">
 
   <!-- Active Orders Tab -->
   <div class="tab-pane fade show active" id="active-orders">
     <div class="card">
-      <div class="card-header bg-light text-dark">Active Orders</div>
+      <div class="card-header bg-light text-dark">History</div>
       <div class="card-body p-0">
         <table class="table mb-0">
           <thead>
@@ -53,7 +39,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
               <th>days</th>
               <th>total</th>
               <th>Date Rented</th>
-              <th>Due Date</th>
+              
               <th>Action</th>
             </tr>
           </thead>
@@ -66,7 +52,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
                       <td><?php echo $row['days']; ?></td>
                       <td><?php echo $row['total']; ?></td>
                       <td><?php echo $row['rented_date']; ?></td>
-                      <td><?php echo $row['total']; ?></td>
+                      
                       <td>
                         
                         <form action= "#" method="POST">
@@ -82,29 +68,6 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
     </div>
   </div>
 
-  <!-- Returned Orders Tab -->
-  <div class="tab-pane fade" id="returned-orders">
-    <div class="card">
-      <div class="card-header bg-light">Returned Orders</div>
-      <div class="card-body p-0">
-        <table class="table mb-0">
-          <thead>
-            <tr>
-              <th>Serial Number</th>
-              <th>Item Name</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Date Rented</th>
-              <th>Date Returned</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th>1</th><td>John</td><td>Doe</td><td>@social</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 
 </div>
 
