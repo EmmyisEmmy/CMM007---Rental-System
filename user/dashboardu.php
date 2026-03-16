@@ -1,6 +1,8 @@
 <?php session_start();
 include("../config/db.php"); 
 $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+$count_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='{$_SESSION['user_id']}'");
+$active_order_count = mysqli_fetch_row($count_query);
 ?>
 
 
@@ -53,6 +55,11 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
           <button class="btn btn-outline-dark me-2" onclick="filterItems('Safety & Protective Equipment')">Safety & Protective Equipment</button>
       </div>
 
+      <div class="filter-buttons text-start mb-4" style="padding-left: 70px">
+          <button type="button" class="btn btn-primary">
+            Active Orders <span class="badge text-bg-secondary"><?php echo $active_order_count [0]; ?></span>
+          </button>
+      </div>
       
 
       <section class="sections">
@@ -92,12 +99,11 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
       </section>
 
 
-
-   
     
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <?php include("../notification.php"); ?>
   <script>
 
     function filterItems(category) {

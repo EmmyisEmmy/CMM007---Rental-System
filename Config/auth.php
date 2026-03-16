@@ -79,6 +79,7 @@ if (isset($_POST["login_button"])) {
             $_SESSION['user_role'] = $active['role'];
 
             if ($active['role'] == 'user') {
+                $_SESSION['success_login'] = "Log in Successful";
                 header("Location: ../user/dashboardu.php");
                 exit();
             } else {

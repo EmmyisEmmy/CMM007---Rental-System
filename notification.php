@@ -4,7 +4,7 @@
 
 
       <div class="toast-container bottom-0 end-0 p-3">
-            <div  id="liveToast" class="toast align-items-center border-0" style="background-color: #D6E5BD; color: #003049">
+            <div  id="liveToast" class="toast align-items-center border-0" style="background-color: #D6E5BD; color: white">
               <div class="d-flex">
                 <div class="toast-body">
                   <strong><?php echo $message; ?></strong>
