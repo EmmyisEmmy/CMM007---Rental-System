@@ -176,6 +176,27 @@ if (isset($_POST["item_delete"])) {
 
 }
 
+if (isset($_POST["item_return"])) {
+
+    $id_item = $_POST['id_item'];
+    $query = "UPDATE active_orders SET status = 'returned' WHERE id = '$id_item'";
+    $query_table = mysqli_query($conn, $query);
+    
+    if ($query_table) {
+        $_SESSION['return_success'] = "item successfully returned";
+        header("Location:../user/rentals.php");
+        exit();
+
+    } else {
+        $_SESSION['deleteitem_failure'] = "deletingfailed";
+        header("Location: ../user/rentals.php");
+        exit();
+    }
+
+
+
+}
+
 if (isset($_POST["order_placed"])) {
 
     // var_dump($_POST);
@@ -197,8 +218,8 @@ if (isset($_POST["order_placed"])) {
 
     
     
-    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title)
-                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title')";
+    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status)
+                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active')";
     $query_table = mysqli_query($conn, $query);
     
     if ($query_table) {

@@ -17,9 +17,9 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals");
 </head>
 <body>
 
-        <div class="sidebar">
-          <?php include("sidebar.php"); ?>
-        </div>
+        
+        <?php include("sidebar.php"); ?>
+        
       
         <div class="content">
           <div class="top">
@@ -35,18 +35,18 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals");
 
 
     <div class="contents-place">
-      <p class="admin-title">All Posted Items</p>
+      <p class="admin-title">Active User Orders</p>
 
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Image</th>
+              <th>Order Id</th>
               <th>Title</th>
               <th>Category</th>
               <th>Pricing</th>
               <th>Status</th>
-              <th>Activity</th>
+              
             </tr>
           </thead>
           <tbody>

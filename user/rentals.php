@@ -1,7 +1,8 @@
 <?php session_start();
 include("../config/db.php"); 
 // $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
-$table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{$_SESSION['user_id']}'");
+$table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{$_SESSION['user_id']}'AND status='active'");
+$return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{$_SESSION['user_id']}'AND status='returned'");
 ?>
 
 
@@ -69,8 +70,8 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
                       <td><?php echo $row['total']; ?></td>
                       <td>
                         
-                        <form action= "#" method="POST">
-                        <button type="submit" name= "item_add" class="btn btn-success btn-sm">Return</button>
+                        <form action= "../config/auth.php" method="POST">
+                        <button type="submit" name= "item_return" class="btn btn-success btn-sm">Return</button>
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
                       </td>
@@ -90,16 +91,31 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
         <table class="table mb-0">
           <thead>
             <tr>
-              <th>Serial Number</th>
+              
               <th>Item Name</th>
-              <th>Category</th>
-              <th>Price</th>
+              <th>Quantity</th>
               <th>Date Rented</th>
               <th>Date Returned</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr><th>1</th><td>John</td><td>Doe</td><td>@social</td></tr>
+            <?php
+              while ($row = mysqli_fetch_assoc($return_query)) { ?>
+                  <tr>
+                      <td><?php echo $row['title']; ?></td>
+                      <td><?php echo $row['quantity']; ?></td>
+                      <td><?php echo $row['rented_date']; ?></td>
+                      <td><?php echo $row['total']; ?></td>
+                      <td>
+                        
+                        <form action= "../config/auth.php" method="POST">
+                        <button type="submit" name= "item_return" class="btn btn-success btn-sm">Returned</button>
+                        <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
+                        </form>
+                      </td>
+                  </tr>       
+              <?php } ?>
           </tbody>
         </table>
       </div>

@@ -3,6 +3,12 @@ include("../config/db.php");
 $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
 $count_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='{$_SESSION['user_id']}'");
 $active_order_count = mysqli_fetch_row($count_query);
+
+if (isset($_GET['search']) && $_GET['search'] != '') {
+  $term = $_GET['search'];
+  $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE title LIKE '%$term%'");  
+
+}
 ?>
 
 
@@ -27,10 +33,10 @@ $active_order_count = mysqli_fetch_row($count_query);
       <div class="box">
         <!-- <h2 class="greeting">Hi, $active['name']</h2> -->
         <h2 class="greeting">Hello, <?php echo $_SESSION['user_name']; ?></h2>
-        <form action="#">
+        <form action="dashboardu.php" method="GET">
             <div class="typing_box">
-                <input type="text" placeholder="Search available items..." required>
-                <div class="selection"><p>Search</p><span></span></div>
+                <input name="search" type="text" placeholder="Search available items..." required>
+                <button type="submit" class="selection">Search</button>
 
             </div>
 
@@ -59,7 +65,16 @@ $active_order_count = mysqli_fetch_row($count_query);
           <button type="button" class="btn btn-primary">
             Active Orders <span class="badge text-bg-secondary"><?php echo $active_order_count [0]; ?></span>
           </button>
+
+          <button type="button" class="btn btn-primary">
+            Returned Items <span class="badge text-bg-secondary">0</span>
+          </button>
+
+          <button type="button" class="btn btn-primary">
+            Overdue rentals <span class="badge text-bg-secondary">0</span>
+          </button>
       </div>
+      
       
 
       <section class="sections">
@@ -102,8 +117,8 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
     
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <?php include("../notification.php"); ?>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script> -->
+  <!-- <?php include("../notification.php"); ?> -->
   <script>
 
     function filterItems(category) {
