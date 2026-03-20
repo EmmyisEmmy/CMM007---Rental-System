@@ -72,6 +72,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
                         
                         <form action= "../config/auth.php" method="POST">
                         <button type="submit" name= "item_return" class="btn btn-success btn-sm">Return</button>
+                        <img src="../assets/image/extend.png" style= "width: 25px; height: 25px;">
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
                       </td>
@@ -111,6 +112,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
                         
                         <form action= "../config/auth.php" method="POST">
                         <button type="submit" name= "item_return" class="btn btn-success btn-sm">Returned</button>
+                        <img src="../assets/image/redo.png" style= "width: 18px; height: 18px;">
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
                       </td>

@@ -83,16 +83,20 @@ if (isset($_GET['search']) && $_GET['search'] != '') {
 while ($row = mysqli_fetch_assoc($table_query)) { ?>
             <div class="category" data-category="<?php echo $row['category'];?>">
               <div class="image"><img src="../assets/image/<?php echo $row['image'];?>"></div>
+             
               <div class="title">
                   <span><?php echo $row['title'];?></span>
                   <span class="price"><?php echo $row['price'];?></span>
-                  <!-- <span class="price"><?php echo $row['category'];?></span> -->
+                  
+                 
               </div>
-              <div class="description"><?php echo $row['description'];?></div>
+              <!-- <div class="description"><?php echo $row['description'];?></div> -->
+                 <span class="description">Available stock (<?php echo $row['item_qty'];?>)</span>
 
               <div class="new-box">
                 
                 <div class="user_decision">
+                  <i class="far fa-heart"></i>
                   <a href= "items.php" class="view_more">More Details</a>
                   <div class="one-line">
                     <a href="Order.php?id=<?php echo $row['id']; ?>"><button class= "rent-button">Rent</button></a>

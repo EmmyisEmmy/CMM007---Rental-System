@@ -42,19 +42,16 @@
 
               </a>
                   <ul class="dropdown-menu dropdown-menu-end notification_resize">
-                    <li> User id: </li><hr>
-                    <li><button class="dropdown-item" type="button">Profile</button></li>
-                    <li><button class="dropdown-item" type="button">Change Language</button></li>
-                    <li><button class="dropdown-item" type="button">Log Out</button></li>
+                    <li>User id: </li><hr>
+                    <!-- <li><button class="dropdown-item" type="button">Profile</button></li>
+                    <li><button class="dropdown-item" type="button">Change Language</button></li> -->
+                    <li><a class="dropdown-item" href="../config/auth.php?logout=true"> 
+                     Log Out
+                    </a></li>
+                    
                   </ul>
           </div>
 
-
-
-          
-
-
-         
           <!-- <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button class="btn" type="submit" style="background-color: #003049; color: white;">Search</button>

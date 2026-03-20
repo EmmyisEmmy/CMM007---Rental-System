@@ -13,9 +13,9 @@
 
               </li>
               <li>
-                <a href="#">
+                <a href="usermanagment.php">
                   <i class="fas fa-user"></i>
-                  <span>Profile</span>
+                  <span>User management</span>
 
                 </a>
 
@@ -77,7 +77,7 @@
 
               </li>
               <li class="logout">
-                <a href="../login/login.php">
+                <a href="../config/auth.php?logout=true">
                   <i class="fas fa-sign-out-alt"></i>
                   <span>Log out</span>
 

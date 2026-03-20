@@ -58,8 +58,8 @@ include "../config/db.php";
                         
                           <select name="role" required>
 
-                            <option value="">What's your role?</option>
-                            <option value="admin">Admin</option>
+                            <option value="#">What's your role?</option>
+                            <!-- <option value="admin">Admin</option> -->
                             <option value="user">User</option>
 
                           </select>
@@ -70,12 +70,12 @@ include "../config/db.php";
                     
                       </div>
 
-                        <div class="box">
+                        <!-- <div class="box">
                        
                         <input id="phone_number" type="tel" name="phone_number"  placeholder="Phone number" required>
                         <div class = "error"></div>
 
-                      </div>
+                        </div> -->
 
                       <div class="box position-relative">
                         

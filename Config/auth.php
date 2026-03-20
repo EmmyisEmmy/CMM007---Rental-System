@@ -106,20 +106,33 @@ if (isset($_POST["login_button"])) {
  }
 
 
- if (isset($_POST["addcart"])) {
+ if (isset($_POST["cart_add"])) {
     
-    // $email = $_POST['email'];
-    // $password = $_POST['password'];
-    // $role = $_POST['role'];
-
-    // $checkEmail = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND role ='$role'");
-    // $active = mysqli_fetch_assoc($checkEmail);
-
+   
     $user_id = $_SESSION['user_id'];
     $item_id = $_POST['item_id'];
 
-    $checkEmail = mysqli_query($conn, "SELECT * FROM cart WHERE email='$email' AND role ='$role'");
-    $active = mysqli_fetch_assoc($checkEmail);
+    $outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
+    $item = mysqli_fetch_assoc($outcome);
+    $price= $item['price'];
+    $image= $item['image'];
+    $title = $item['title'];
+
+    $query = "INSERT INTO cart (user_id, item_id, price, image, item_name)
+                VALUES ('$user_id','$item_id','$price', '$image', '$title')";
+          
+    $query_table = mysqli_query($conn, $query);
+
+    if ($query_table) {
+        $_SESSION['cart_success'] = "Item added to cart!";
+        header("Location: ../user/cart.php");
+        exit();
+
+    } else {
+        $_SESSION['post_failure'] = "Publishing failed";
+        header("Location: ../user/cart.php");
+        exit();
+    }
  }
 
 
@@ -181,6 +194,7 @@ if (isset($_POST["item_return"])) {
     $id_item = $_POST['id_item'];
     $query = "UPDATE active_orders SET status = 'returned' WHERE id = '$id_item'";
     $query_table = mysqli_query($conn, $query);
+    // $qty_return = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty + $quantity WHERE id = '$item_id'");
     
     if ($query_table) {
         $_SESSION['return_success'] = "item successfully returned";
@@ -220,6 +234,7 @@ if (isset($_POST["order_placed"])) {
     
     $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status)
                 VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active')";
+            $qty_update = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty - $quantity WHERE id = '$item_id'");
     $query_table = mysqli_query($conn, $query);
     
     if ($query_table) {
@@ -287,6 +302,13 @@ if (isset($_POST["item_update"])) {
 
 
 
+}
+
+if (isset($_GET['logout'])) {
+
+    session_destroy();
+    header("Location: ../login/login.php");
+    exit();
 }
 
 ?>

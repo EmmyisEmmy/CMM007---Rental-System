@@ -121,7 +121,7 @@ $return_order_count = mysqli_fetch_row($count_return_query);
               <div class= "content-inside">
                 <div class= "content-header">
                   <div class= "description">
-                    <span class="title">Revenue Today</span>
+                    <span class="title">Total Stock</span>
                     <span class="No-items">24</span>
                   </div>
                   <i class="fas fa-calendar-day fa-xl"></i>
