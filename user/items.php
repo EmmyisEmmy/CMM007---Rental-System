@@ -1,6 +1,8 @@
 <?php session_start();
 include("../config/db.php"); 
-$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+$id = $_GET['id'];
+$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE id= '$id'");
+$row = mysqli_fetch_assoc($table_query);
 ?>
 
 
@@ -10,6 +12,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/home.css">
+  <link rel="stylesheet" href="../assets/css/userrentals.css">
   <link rel="stylesheet" href="../assets/css/items.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -20,35 +23,66 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
   <?php include("navbaru.php"); ?>
 
 
-  <div class="page">
+<div class="container mt-4" >
+      <div class="row">
+          <div class="col-12">
+              <div class="card p-3" style="border: 1px solid #e0e0e0;">
+                  <img src="../assets/image/<?php echo $row['image'];?>"style="width: 50%; height: 300px; object-fit: cover; border-radius: 8px;">
+              </div>
+          </div>
 
-    <div class="top">
-      <div class="image">
-        <img src="../assets/image/laptop.jpg" alt="Item Image">
       </div>
-      <div class="item-info">
-        <h1>HP Laptop</h1>
-        <p class="category">Electronics</p>
-        <p class="price">$5 / day</p>
-        <button class="rent-button">Add to Cart</button>
-      
-      </div>
-    </div>
 
-    <div class="item-bottom">
-      <h3>Description</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quos inventore consectetur quam dicta earum laboriosam voluptas delectus.</p>
+      <div class="row mt-4">
+          <div class="col-md-8">
 
-      <h3>Specification</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo hic debitis voluptates velit hic animi nam deserunt expedita.</p>
+            <div class="card p-4" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+                <?php echo $row['title'];?> - Available stock (<?php echo $row['item_qty'];?>)
+                <h4>Item Description</h4>
+                <p><?php echo $row['description'];?></p>
+
+                <h4>Product Specification</h4>
+                <p><?php echo $row['specification'];?></p>
+
+                <div class="d-flex gap-2">
+                  <form action="../config/auth.php" method="POST">
+                      <input type="hidden" name="item_id" value="<?php echo $row['id'];?>">
+                      <a href="Order.php?id=<?php echo $row['id']; ?>"><button type="submit" name="cart_add" class="btn btn-primary">Add to Cart</button></a>
+                  </form>
+                  <a href="Order.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-primary">Rent item</button></a>
+                </div>
+                
+
+               
+
+
+            </div>
+
+            
+
+
+          </div>
+          <div class="col-md-4">
+
+            <div class="card p-4" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+                <h4>Featured Items</h4>
+                <ul>Item 1</ul>
+
+            </div>
+
         
-    </div>
+          </div>
 
-  </div>
+          
+      </div>
 
+</div>
   
-  
+<?php include("../footer.php"); ?>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </html>
 
 

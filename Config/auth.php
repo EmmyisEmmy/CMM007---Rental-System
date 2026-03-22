@@ -190,11 +190,15 @@ if (isset($_POST["item_delete"])) {
 }
 
 if (isset($_POST["item_return"])) {
-
+   
     $id_item = $_POST['id_item'];
+    $order = mysqli_query($conn, "SELECT * FROM active_orders WHERE id = '$id_item'");
+    $order_item = mysqli_fetch_assoc($order);
+    $item_id = $order_item['item_id'];
+    $quantity = $order_item['quantity'];
     $query = "UPDATE active_orders SET status = 'returned' WHERE id = '$id_item'";
     $query_table = mysqli_query($conn, $query);
-    // $qty_return = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty + $quantity WHERE id = '$item_id'");
+    $qty_return = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty + $quantity WHERE id = '$item_id'");
     
     if ($query_table) {
         $_SESSION['return_success'] = "item successfully returned";
@@ -225,21 +229,33 @@ if (isset($_POST["order_placed"])) {
     $active = mysqli_fetch_assoc($outcome);
     $price= $active['price'];
     $total = $quantity * $days * $price;
+    $due_on = date('Y-m-d', strtotime("+$days days"));
 
     // $title_outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
     // $active_title = mysqli_fetch_assoc($title_outcome);
     $title = $active['title'];
 
+    $stock_qty = $active['item_qty'];
+
+    if ($stock_qty<= 20) {
+        $max_qty = 1;
+
+    } elseif ($stock_qty <= 40) {
+        $max_qty = 2;
+
+    } else {
+        $max_qty = 3;
+
+    }
+
     
-    
-    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status)
-                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active')";
+    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status, due_on)
+                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active', '$due_on')";
             $qty_update = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty - $quantity WHERE id = '$item_id'");
     $query_table = mysqli_query($conn, $query);
     
     if ($query_table) {
         
-
         $_SESSION['order_success'] = "Good News! You placed an order";
         header("Location: ../user/successful.php");
         exit();

@@ -67,7 +67,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
                       <td><?php echo $row['days']; ?></td>
                       <td><?php echo $row['total']; ?></td>
                       <td><?php echo $row['rented_date']; ?></td>
-                      <td><?php echo $row['total']; ?></td>
+                      <td class='count_time' data-date="<?php echo $row['due_on']; ?>"></td>
                       <td>
                         
                         <form action= "../config/auth.php" method="POST">
@@ -144,6 +144,29 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<script>
+  const time = document.querySelectorAll(".count_time");
+  
+  time.forEach(function(count_time) {
+
+      setInterval (function() {
+          const due_date = new Date(count_time.dataset.date);
+          const current = new Date();
+          const time_left = due_date - current;
+          const days = Math.floor(time_left/(60 * 60 * 24 * 1000))
+          const hours = Math.floor((time_left % (60 * 60 * 24 * 1000)) / 3600000)
+          const minutes = Math.floor((time_left % (1000 * 60 * 60)) / 60000)
+          count_time.textContent=days + "d " + hours + "h " + minutes + "m";
+
+      }, 1000);
+
+  });
+
+  
+
+
+</script>
   
 </body>
 </html>

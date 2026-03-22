@@ -97,7 +97,7 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
                 
                 <div class="user_decision">
                   <i class="far fa-heart"></i>
-                  <a href= "items.php" class="view_more">More Details</a>
+                  <a href= "items.php?id=<?php echo $row['id']; ?>" class="view_more">More Details</a>
                   <div class="one-line">
                     <a href="Order.php?id=<?php echo $row['id']; ?>"><button class= "rent-button">Rent</button></a>
                     <form action="../config/auth.php" method="POST">
