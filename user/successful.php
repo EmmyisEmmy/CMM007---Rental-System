@@ -43,9 +43,11 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
             <h2>Your Payment is Succesful</h2>
             <p>Congratulations! Your rental is on the way.</p>
             <!-- <i class="fas fa-paper-plane"></i> -->
+             <!-- ?id=<?php echo $order_id; ?> -->
              <img src="../assets/image/sucess.png" style="width: 150px; height: 150px;" alt="success">
             <div class="back-button">
                 <a href="dashboardu.php"><button type="button" class="btn btn-primary btn-lg">Go back</button></a>
+                <a href="invoice.php"><button type="button" class="btn btn-primary btn-lg">View Your Invoice</button></a>
             </div>
       </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

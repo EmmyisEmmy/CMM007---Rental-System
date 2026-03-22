@@ -28,26 +28,68 @@ $table_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='{$_SESSION
           <div class="col-md-2">Money</div>
       </div>
     </div> -->
-    <div class="container mt-4 px-5"><h4>My Cart(0)</h4></div>
-  <?php
-while ($row = mysqli_fetch_assoc($table_query)) { ?>
-    <div class="card mb-3 p-3 container mt-4 px-5">
+<div class="container mt-4 px-5">
+
+      <div class="row">
+          
+            <div class="col-md-8">
+      
+                <h5>My Cart(0)</h5>
+              
+           
 
 
-          <div class="d-flex align-items-center" style="gap: 190px;">
-              <img src="../assets/image/<?php echo $row['image'];?>" style="width:80px; height:80px; object-fit:cover; border-radius: 8px;">
-              <strong><span><?php echo $row['item_name'];?></span></strong>
-              <span><?php echo $row['price'];?></span>
-              <span><i class="fas fa-trash"></i></span>
-              <button class="btn btn-primary btn-sm">Rent</button>
+              <?php
+              while ($row = mysqli_fetch_assoc($table_query)) { ?>
 
 
+              <div class="card mb-3 p-3 container mt-4 px-5">
 
 
-          </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <input type="checkbox" name="selected_items[]" value="<?php echo $row['id']; ?>" style="width: 20px; height: 20px; accent-color: #0000">
+                        <img src="../assets/image/<?php echo $row['image'];?>" style="width:80px; height:80px; object-fit:cover; border-radius: 8px;">
+                        <strong><span><?php echo $row['item_name'];?></span></strong>
+                        <span><?php echo $row['price'];?></span>
+                        <span><img src="../assets/image/trash.png" style= "width: 22px; height: 22px;"></i></span>
+                        <button class="btn btn-primary btn-sm" style="background-color: #003049; color: white; border: none;">Rent</button>
 
-    </div>
-    <?php } ?>
+                    </div>
+
+              </div>
+              
+              <?php } ?>
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4">
+                    <h5>Order Summary</h5>
+                    <p>Total:<p>
+                    <p>QTY:<p>
+                    
+                    <button type="button" class="btn btn-primary btn-lg w-100" style="background-color: #003049; color: white; border: none;">Rent (0)</button>
+                </div>
+
+                <div class="card p-4 mt-3">
+                    <h5>Shipping Details</h5>
+                    <a href="#">
+                      <img src="../assets/image/edit.png" style= "width: 22px; height: 22px;">
+                    </a>
+                    <p>#</p>
+                    
+                    
+                </div>
+            </div>
+
+            
+
+      </div>
+</div>
+
+
+    
 <?php include("../footer.php"); ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

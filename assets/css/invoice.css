@@ -1,0 +1,324 @@
+*{
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+
+}
+
+body {
+
+  background: white;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+
+}
+
+.invoice {
+
+  background: white;
+  width: 750px;
+  padding: 50px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
+}
+
+.top {
+
+  display: flex;
+  margin-bottom: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logo_company {
+
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+
+.complogo-box{
+
+  height: 35px;
+  width: 35px;
+  background: #222;
+}
+
+.oriental-name {
+
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 18px; 
+
+}
+
+
+.oriental-tag {
+
+  /* font-weight: 700; */
+  letter-spacing: 1px;
+  font-size: 12px;
+  
+
+}
+
+.title{
+  text-align: right;
+}
+
+.title h1{
+  font-size: 32px;
+  font-weight: 900px;
+  letter-spacing: 3px;
+
+}
+
+.title p {
+    font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.Funds-bill {
+
+  display: flex;
+  padding: 20px 25px;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.Funds-block{
+  flex: 1;
+}
+
+.Funds-label{
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  
+
+}
+
+.invoice-owner{
+  font-size: 15px;
+  margin-bottom: 5px;
+
+
+}
+
+.address {
+
+  font-size: 12px;
+  line-height: 1.6;
+  color: #555;
+
+
+}
+
+.invoice-box {
+
+  display: flex;
+  color: #555;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #555;
+
+
+}
+
+.invoice-box span {
+  font-weight: 600;
+  color: #111;
+
+
+}
+
+table {
+
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr {
+
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+thead th {
+
+  letter-spacing: 1.5px;
+  font-size: 12px;
+  text-align: left;
+  padding: 10px 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #555;
+
+}
+
+thead th:last-child,
+tbody th:last-child {
+  text-align: right;
+}
+
+tbody tr {
+
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.no-of-item {
+
+  width: 20px;
+  
+}
+
+.description_item{
+
+  color: #333;
+}
+
+.description_sub{
+  font-size: 11px;
+}
+
+.total-items-section{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.total-item {
+
+  font-size: 12px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-weight: 700;
+
+}
+
+.amount {
+  font-size: 24px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+/* .amount::after {
+
+  content: '';
+  bottom: -4px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+} */
+
+.breakdown{
+  text-align: right;
+}
+
+.row-total{
+
+  font-size: 12px;
+  gap: 60px;
+  padding: 4px 0;
+  justify-content: space-between;
+  color: #555;
+ 
+}
+
+.footer{
+ display: flex;
+ gap: 30px;
+ padding-top: 20px;
+ border-top: 1px solid #eee; 
+ margin-bottom: 20px; 
+}
+
+.block-footer {
+  flex: 1;
+
+}
+
+.label-footer{
+
+  letter-spacing: 1px;
+  font-size: 10px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.text-footer {
+  line-height: 1.6;
+  color: #777;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.sign{
+  text-align: right;
+  flex: 1;
+}
+
+.label-sign{
+  
+  margin-bottom: 8px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.label-sign-name{
+
+    margin-bottom: 4px;
+    font-style: italic;
+    font-family: Georgia, serif;
+    color: #333;
+    font-size: 22px;
+}
+
+.signature{
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.print{
+  background: #003049;
+  color: white;
+  cursor: pointer;
+}
+
+@media print {
+  body { background: white; padding: 0;}
+  .invoice { box-shadow: none;}
+  .print {display: none;}
+}
+
+.FAQ{
+
+  border-top: 1px solid #eee;
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
+
+.FAQ p{
+
+  font-size: 11px;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.FAQ span{
+
+  font-size: 11px;
+  color:#777;
+
+}

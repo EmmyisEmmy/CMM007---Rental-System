@@ -26,13 +26,13 @@
         <div class="d-flex align-items-center gap-3 pe-3">
 
           <a href="cart.php" class="position-relative text-dark fs-5">
-             <img src="../assets/image/addcart.png" style= "width: 25px; height: 25px;">
+             <img src="../assets/image/addcart.png" style= "width: 23px; height: 23px;">
           </a>
           <a href="#" class="position-relative text-dark fs-5">
-            <img src="../assets/image/notification.jpg" style= "width: 25px; height: 25px;">
+            <img src="../assets/image/notification.jpg" style= "width: 23px; height: 23px;">
           </a>
           <a href="#" class="position-relative text-dark fs-5">
-            <img src="../assets/image/heart.png" style= "width: 25px; height: 25px;">
+            <img src="../assets/image/heart.png" style= "width: 23px; height: 23px;">
           </a>
 
           <div class="dropdown pe-2">
@@ -42,12 +42,17 @@
 
               </a>
                   <ul class="dropdown-menu dropdown-menu-end notification_resize">
-                    <li>User id: </li><hr>
+                    
                     <!-- <li><button class="dropdown-item" type="button">Profile</button></li>
                     <li><button class="dropdown-item" type="button">Change Language</button></li> -->
-                    <li><a class="dropdown-item" href="../config/auth.php?logout=true"> 
-                     Log Out
+                    <li><a class="dropdown-item" href="profile.php"> User id: </a></li><hr>
+                    <li><a class="dropdown-item" href="profile.php"> 
+                     Profile
                     </a></li>
+                    <li><a class="dropdown-item" href="../config/auth.php?logout=true"> 
+                     Log out
+                    </a></li>
+                    
                     
                   </ul>
           </div>
