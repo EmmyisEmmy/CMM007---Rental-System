@@ -1,7 +1,10 @@
 <?php session_start();
 include("../config/db.php"); 
 $table_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='{$_SESSION['user_id']}'");
-
+$user_query = mysqli_query($conn, "SELECT * FROM users WHERE id='{$_SESSION['user_id']}'");
+$user = mysqli_fetch_assoc($user_query);
+$count_cart_query = mysqli_query($conn, "SELECT COUNT(*) FROM cart WHERE user_id='{$_SESSION['user_id']}'");
+$cart_count = mysqli_fetch_row($count_cart_query);
 ?>
 
 
@@ -29,16 +32,18 @@ $table_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='{$_SESSION
       </div>
     </div> -->
 <div class="container mt-4 px-5">
+  <h5>My Cart(<?php echo $cart_count[0]; ?>)</h5>
 
+  <form action="../config/auth.php" method="POST">
       <div class="row">
           
             <div class="col-md-8">
       
-                <h5>My Cart(0)</h5>
+                
               
            
 
-
+            
               <?php
               while ($row = mysqli_fetch_assoc($table_query)) { ?>
 
@@ -68,15 +73,19 @@ $table_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='{$_SESSION
                     <p>Total:<p>
                     <p>QTY:<p>
                     
-                    <button type="button" class="btn btn-primary btn-lg w-100" style="background-color: #003049; color: white; border: none;">Rent (0)</button>
+                    <input type="hidden" name="user_id" value= "<?php echo $_SESSION['user_id']; ?>">
+                    <button type="submit"  name="cart_order" class="btn btn-primary btn-lg w-100" style="background-color: #003049; color: white; border: none;">Rent (0)</button>
                 </div>
 
                 <div class="card p-4 mt-3">
                     <h5>Shipping Details</h5>
-                    <a href="#">
+                    <a href="profile.php">
                       <img src="../assets/image/edit.png" style= "width: 22px; height: 22px;">
                     </a>
-                    <p>#</p>
+                    <p><?php echo $user['address']; ?></p>
+                    <p><?php echo $user['city']; ?></p>
+                    <p><?php echo $user['postcode']; ?></p>
+                    <p><?php echo $user['phone_number']; ?></p>
                     
                     
                 </div>
@@ -85,6 +94,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM cart WHERE user_id='{$_SESSION
             
 
       </div>
+  </form>
 </div>
 
 

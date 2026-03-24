@@ -77,6 +77,7 @@ if (isset($_POST["login_button"])) {
             $_SESSION['user_id'] = $active['id'];
             $_SESSION['user_name'] = $active['name'];
             $_SESSION['user_role'] = $active['role'];
+            
 
             if ($active['role'] == 'user') {
                 $_SESSION['success_login'] = "Log in Successful";
@@ -230,6 +231,7 @@ if (isset($_POST["order_placed"])) {
     $price= $active['price'];
     $total = $quantity * $days * $price;
     $due_on = date('Y-m-d', strtotime("+$days days"));
+    $tracking_id = rand(100000, 999999);
 
     // $title_outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
     // $active_title = mysqli_fetch_assoc($title_outcome);
@@ -249,10 +251,11 @@ if (isset($_POST["order_placed"])) {
     }
 
     
-    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status, due_on)
-                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active', '$due_on')";
+    $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status, due_on, tracking_id)
+                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active', '$due_on', '$tracking_id')";
             $qty_update = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty - $quantity WHERE id = '$item_id'");
     $query_table = mysqli_query($conn, $query);
+    $_SESSION['current_order_id'] = mysqli_insert_id($conn);
     
     if ($query_table) {
         
@@ -320,6 +323,34 @@ if (isset($_POST["item_update"])) {
 
 }
 
+if (isset($_POST["profile_update"])) {
+    
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone_number'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $postcode = $_POST['postcode'];
+
+
+    $query = "UPDATE users SET name='$name', email='$email', phone_number='$phone', address='$address', city='$city', postcode='$postcode' WHERE id = '{$_SESSION['user_id']}'";
+    $query_table = mysqli_query($conn, $query);
+    
+    if ($query_table) {
+        $_SESSION['edit_success'] = "Updated";
+        header("Location: ../user/profile.php");
+        exit();
+
+    } else {
+        $_SESSION['updating_failure'] = "updatingfailed";
+        header("Location: ../usser/profile.php");
+        exit();
+    }
+
+
+
+}
+
 if (isset($_GET['logout'])) {
 
     session_destroy();
@@ -327,6 +358,50 @@ if (isset($_GET['logout'])) {
     exit();
 }
 
+
+if (isset($_POST['cart_order'])) {
+
+    $user_id = $_SESSION['user_id'];
+    $selected_items = $_POST['selected_items'];
+
+    if(empty($selected_items)) {
+        header("Location: ../user/cart.php");
+        exit();
+    }
+
+    foreach ($selected_items as $cart_id){
+
+        $cart_new_query = mysqli_query($conn, "SELECT * FROM cart WHERE id='$cart_id'");
+        $cart_new_item = mysqli_fetch_assoc($cart_new_query);
+
+
+        $item_id = $cart_new_item['item_id'];
+        $rent_new_query = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
+        $rent_new_item = mysqli_fetch_assoc($rent_new_query);
+        $price =  $rent_new_item['price'];
+
+        $tracking_id = rand(100000, 999999);
+
+        $days = 1;
+        $quantity = 1;
+        $title=  $cart_new_item['item_name'];
+        $total = $quantity * $days * $price;
+        $due_on = date('Y-m-d', strtotime("+$days days"));
+
+        $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status, due_on, tracking_id)
+                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active', '$due_on', '$tracking_id')";
+
+        $query_table = mysqli_query($conn, $query);
+        $rent_new_query = mysqli_query($conn, "UPDATE rentals SET item_qty =item_qty - $quantity WHERE id='$item_id'");
+        $delete_item_query = mysqli_query($conn, "DELETE FROM cart WHERE id='$cart_id'");
+
+
+
+
+    }
+    header("Location: ../user/successful.php");
+    exit();
+}
 ?>
 
 

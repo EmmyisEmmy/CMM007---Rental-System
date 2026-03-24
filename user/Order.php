@@ -3,6 +3,8 @@ include("../config/db.php");
 $id = $_GET['id'];
 $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$id'");
 $row = mysqli_fetch_assoc($table_query);
+$user_query = mysqli_query($conn, "SELECT * FROM users WHERE id='{$_SESSION['user_id']}'");
+$user = mysqli_fetch_assoc($user_query);
 ?>
 
 
@@ -115,8 +117,20 @@ $row = mysqli_fetch_assoc($table_query);
                     <button type="submit" name="order_placed" class="btn w-100" style="background-color:#003049; color:white;">
                       Pay Now
                     </button>
-
+                  <div class="card p-4 mt-3">
+                    <h5>Shipping Details</h5>
+                    <a href="profile.php">
+                      <img src="../assets/image/edit.png" style= "width: 22px; height: 22px;">
+                    </a>
+                    <p><?php echo $user['address']; ?></p>
+                    <p><?php echo $user['city']; ?></p>
+                    <p><?php echo $user['postcode']; ?></p>
+                    <p><?php echo $user['phone_number']; ?></p>
+                    
+                    
+                </div>
               </div>
+              
             </div>  
         </div>
   </div>

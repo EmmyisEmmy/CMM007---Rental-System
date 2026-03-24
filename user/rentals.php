@@ -49,6 +49,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
         <table class="table mb-0">
           <thead>
             <tr>
+              <th>Order ID</th>
               <th>Item</th>
               <th>Quantity</th>
               <th>days</th>
@@ -62,6 +63,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
               <?php
               while ($row = mysqli_fetch_assoc($table_query)) { ?>
                   <tr>
+                      <td>OR-<?php echo $row['tracking_id']; ?></td>
                       <td><?php echo $row['title']; ?></td>
                       <td><?php echo $row['quantity']; ?></td>
                       <td><?php echo $row['days']; ?></td>
@@ -72,7 +74,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
                         
                         <form action= "../config/auth.php" method="POST">
                         <button type="submit" name= "item_return" class="btn btn-success btn-sm">Return</button>
-                        <img src="../assets/image/extend.png" style= "width: 25px; height: 25px;">
+                        <a href="#"><img src="../assets/image/extend.png" style= "width: 25px; height: 25px;"></a>
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
                       </td>
@@ -92,7 +94,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
         <table class="table mb-0">
           <thead>
             <tr>
-              
+              <th>Order ID</th>
               <th>Item Name</th>
               <th>Quantity</th>
               <th>Date Rented</th>
@@ -104,6 +106,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
             <?php
               while ($row = mysqli_fetch_assoc($return_query)) { ?>
                   <tr>
+                      <td>OR-<?php echo $row['tracking_id']; ?></td>
                       <td><?php echo $row['title']; ?></td>
                       <td><?php echo $row['quantity']; ?></td>
                       <td><?php echo $row['rented_date']; ?></td>

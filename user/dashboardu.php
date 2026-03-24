@@ -3,6 +3,8 @@ include("../config/db.php");
 $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
 $count_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='{$_SESSION['user_id']}'");
 $active_order_count = mysqli_fetch_row($count_query);
+// $return_query = mysqli_query($conn, "SELECT COUNT (*) FROM active_orders WHERE status= 'returned'");
+// $retuned_order_count = mysqli_fetch_row($return_query);
 
 if (isset($_GET['search']) && $_GET['search'] != '') {
   $term = $_GET['search'];
@@ -62,9 +64,11 @@ if (isset($_GET['search']) && $_GET['search'] != '') {
       </div>
 
       <div class="filter-buttons text-start mb-4" style="padding-left: 70px">
-          <button type="button" class="btn btn-primary">
-            Active Orders <span class="badge text-bg-secondary"><?php echo $active_order_count [0]; ?></span>
-          </button>
+          <a href="rentals.php">
+            <button type="button" class="btn btn-primary">
+              Active Orders <span class="badge text-bg-secondary"><?php echo $active_order_count [0]; ?></span>
+            </button>
+          </a>
 
           <button type="button" class="btn btn-primary">
             Returned Items <span class="badge text-bg-secondary">0</span>
@@ -86,7 +90,7 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
              
               <div class="title">
                   <span><?php echo $row['title'];?></span>
-                  <span class="price"><?php echo $row['price'];?></span>
+                  <span class="price">£<?php echo $row['price'];?></span>
                   
                  
               </div>

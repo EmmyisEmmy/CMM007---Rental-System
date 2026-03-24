@@ -1,3 +1,17 @@
+<?php session_start();
+include("../config/db.php"); 
+$id = $_GET['id'];
+$user_query = mysqli_query($conn, "SELECT * FROM users WHERE id='{$_SESSION['user_id']}'");
+$user = mysqli_fetch_assoc($user_query);
+$table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE id='$id'");
+$activeorder = mysqli_fetch_assoc($table_query);
+$pricing_query = mysqli_query($conn, "SELECT * FROM rentals WHERE id='{$activeorder['item_id']}'");
+$item = mysqli_fetch_assoc($pricing_query);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,11 +43,11 @@
     <div class="Funds-bill">
         <div class="Funds-block">
             <div class="Funds-label">Invoice To</div>
-            <div class="invoice-owner">username</div>
+            <div class="invoice-owner"><?php echo $user['name']; ?></div>
             <div class="address">
-                68 Gillespie Crescent<br>
-                Aberdeen, AB25 3AT<br>
-                222-222-222
+                <?php echo $user['address']; ?><br>
+                <?php echo $user['city']; ?>, <?php echo $user['postcode']; ?><br>
+                <?php echo $user['phone_number']; ?>
             </div>
         </div>
 
@@ -41,16 +55,16 @@
             <div class="Funds-label">Ship To</div>
             <div class="invoice-owner">Delivery Address</div>
             <div class="address">
-                68 Gillespie Crescent<br>
-                Aberdeen, AB25 3AT<br>
-                222-222-222
+                <?php echo $user['address']; ?><br>
+                <?php echo $user['city']; ?>, <?php echo $user['postcode']; ?><br>
+                <?php echo $user['phone_number']; ?>
             </div>
         </div>
     </div>
 
     <div class="invoice-box">
-        <div>DATE: <span>#</span></div>
-        <div>INVOICE NO: <span>#</span></div>     
+        <div>DATE: <span><?php echo date ('m.d.Y'); ?></span></div>
+        <div>Tracking ID: OR -<span><?php echo $activeorder['tracking_id']; ?></span></div>     
     </div>
 
     <table>
@@ -60,6 +74,7 @@
                 
                 <th class="no-of-item">Item No</th>
                 <th>Item Description</th>
+                <th>Days</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -71,12 +86,13 @@
           <tr>
               <td class="no-of-item">1.</td>
               <td>
-                  <div class="description_item">Name Here</div>
-                  <div class="description_sub">Category</div>
+                  <div class="description_item"><?php echo $activeorder['title']; ?></div>
+                  <!-- <div class="description_sub">Category</div> -->
               </td>
-              <td>$5.00</td>
-              <td>1</td>
-              <td>$5.00</td>
+              <td><?php echo $activeorder['days']; ?></td>
+              <td>£<?php echo $item['price']; ?></td>
+              <td><?php echo $activeorder['quantity']; ?></td>
+              <td>£<?php echo $activeorder['total']; ?></td>
           </tr>
 
       </tbody>
@@ -86,12 +102,12 @@
     <div class="total-items-section">
         <div>
           <div class="total-item">Total</div>
-          <div class="amount">$ 5.00</div>
+          <div class="amount">£<?php echo $activeorder['total']; ?></div>
         </div>
         <div class="breakdown">
-          <div class="row-total"><span>Subtotal:</span><span>$ 5.00</span></div>
-          <div class="row-total"><span>Tax:</span><span>0</span></div>
-          <div class="row-total-overall"><span>Total:</span><span>$ 5.00</span></div>
+          <div class="row-total"><span>Subtotal:  </span><span>£<?php echo $activeorder['total']; ?></span></div>
+          <div class="row-total"><span>Tax:  </span><span>0</span></div>
+          <div class="row-total-overall"><span>Total:  </span><span>£<?php echo $activeorder['total']; ?></span></div>
         </div>
     </div>
 
