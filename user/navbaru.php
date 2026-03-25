@@ -1,3 +1,8 @@
+<?php 
+
+$notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id= '{$_SESSION['user_id']}' AND is_read='0'");
+?>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center" href="dashboardu.php">
@@ -15,21 +20,38 @@
         <li class="nav-item"><a class="nav-link" href="#">Orders</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Services
+            Rentals
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="rentals.php">Rentals</a></li>
-            <li><a class="dropdown-item" href="rentals.php">Return</a></li>
+            <li><a class="dropdown-item" href="rentals.php">Active Rentals</a></li>
+            <li><a class="dropdown-item" href="rentals.php">Returned items</a></li>
           </ul>
         </li>
       </ul>
         <div class="d-flex align-items-center gap-3 pe-3">
 
+
+          <div class="dropdown">
+              <!-- <a href="#" class="position-relative text-dark fs-5"> -->
+              <button type="button" class= "btn border-0 position-relative" data-bs-toggle="dropdown" aria-expanded="false">
+
+                  <img src="../assets/image/notification.png" style= "width: 23px; height: 23px;">
+                  <span class="position-absolute top-2 start-71 translate-middle p-1 border border-light rounded-circle" style="background-color: #ff69b4;"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;">
+                  <h6 class="px-2">Notifications</h6><hr class="my-1">
+                  <?php while ($notif = mysqli_fetch_assoc($notification_query)) { ?>
+
+                    <li><a class="dropdown-item py-2 border-bottom d-flex align-items-center gap-2" href="rentals.php"><p class="mb-0" style="font-size: 13px;"><img src="../assets/image/inbox.png" style= "width: 18px; height: 18px;"></i>    <?php echo $notif['message']; ?></p></a></li>
+                <?php } ?>
+                <?php if (mysqli_num_rows($notification_query)== 0) { ?>
+                    <li><p class="text-center text-muted py-3" style="font-size: 14px;">Nothing to See here...</p></li>
+                <?php } ?>  
+              </ul>
+          </div>
           <a href="cart.php" class="position-relative text-dark fs-5">
              <img src="../assets/image/addcart.png" style= "width: 23px; height: 23px;">
-          </a>
-          <a href="#" class="position-relative text-dark fs-5">
-            <img src="../assets/image/notification.jpg" style= "width: 23px; height: 23px;">
+              
           </a>
           <a href="#" class="position-relative text-dark fs-5">
             <img src="../assets/image/heart.png" style= "width: 23px; height: 23px;">

@@ -50,6 +50,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
           <thead>
             <tr>
               <th>Order ID</th>
+              <th>Status</th>
               <th>Item</th>
               <th>Quantity</th>
               <th>days</th>
@@ -64,16 +65,31 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
               while ($row = mysqli_fetch_assoc($table_query)) { ?>
                   <tr>
                       <td>OR-<?php echo $row['tracking_id']; ?></td>
+                      <td>
+                        <?php 
+                        if ($row['delivery_status'] == 'warehouse') {
+                          echo '<span class="badge rounded-pill text-bg-danger">Warehouse</span>';
+                        }elseif ($row['delivery_status'] == 'shipped') {
+                          echo '<span class="badge rounded-pill text-bg-warning">shipped</span>';
+
+                        }elseif ($row['delivery_status'] == 'received') {
+                          echo '<span class="badge rounded-pill text-bg-secondary">received</span>';
+
+                        }
+                       
+                        ?>
+                      </td>
                       <td><?php echo $row['title']; ?></td>
                       <td><?php echo $row['quantity']; ?></td>
                       <td><?php echo $row['days']; ?></td>
                       <td><?php echo $row['total']; ?></td>
                       <td><?php echo $row['rented_date']; ?></td>
-                      <td class='count_time' data-date="<?php echo $row['due_on']; ?>"></td>
+                      <td class='count_time' data-date="<?php echo $row['due_on']; ?>" data-stats="<?php echo $row['delivery_status']; ?>"></td>
                       <td>
                         
                         <form action= "../config/auth.php" method="POST">
                         <button type="submit" name= "item_return" class="btn btn-success btn-sm">Return</button>
+                        <button type="submit" name= "#" class="btn btn-danger btn-sm">Cancel Order</button>
                         <a href="#"><img src="../assets/image/extend.png" style= "width: 25px; height: 25px;"></a>
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
@@ -99,7 +115,8 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
               <th>Quantity</th>
               <th>Date Rented</th>
               <th>Date Returned</th>
-              <th>Status</th>
+              <th>Action</th>
+              <th>Approval Status</th>
             </tr>
           </thead>
           <tbody>
@@ -110,14 +127,29 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
                       <td><?php echo $row['title']; ?></td>
                       <td><?php echo $row['quantity']; ?></td>
                       <td><?php echo $row['rented_date']; ?></td>
-                      <td><?php echo $row['total']; ?></td>
+                      <td><?php echo $row['date_returned']; ?></td>
                       <td>
                         
                         <form action= "../config/auth.php" method="POST">
-                        <button type="submit" name= "item_return" class="btn btn-success btn-sm">Returned</button>
-                        <img src="../assets/image/redo.png" style= "width: 18px; height: 18px;">
+                        <span class="badge rounded-pill text-bg-secondary">Returned</span>
+                        <!-- <img src="../assets/image/redo.png" style= "width: 18px; height: 18px;"> -->
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
+                      </td>
+                      <td>
+                         
+                        <?php 
+                        if ($row['approval_status'] == 'rejected') {
+                          echo '<span class="badge rounded-pill text-bg-danger">rejected</span>';
+                        }elseif ($row['approval_status'] == 'pending') {
+                          echo '<span class="badge rounded-pill text-bg-warning">pending</span>';
+
+                        }elseif ($row['approval_status'] == 'approved') {
+                          echo '<span class="badge rounded-pill text-bg-success">approved</span>';
+
+                        }
+                       
+                        ?>
                       </td>
                   </tr>       
               <?php } ?>
@@ -154,6 +186,11 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
   time.forEach(function(count_time) {
 
       setInterval (function() {
+          const status_item = count_time.dataset.stats;
+          if (status_item !== 'received') {
+              count_time.textContent = 'Pending'
+              return;
+          }
           const due_date = new Date(count_time.dataset.date);
           const current = new Date();
           const time_left = due_date - current;

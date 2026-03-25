@@ -114,7 +114,7 @@ $return_order_count = mysqli_fetch_row($count_return_query);
                       echo $total_revenue_count_query[0];
                       ?></span>
                   </div>
-                  <i class="fas fa-dollar-sign fa-xl"></i>
+                  <i class="fas fa-pound-sign fa-xl"></i>
                 </div>
               </div>
 

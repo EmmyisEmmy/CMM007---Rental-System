@@ -1,7 +1,8 @@
-<!-- <?php session_start();
+<?php session_start();
 include("../config/db.php"); 
-$table_query = mysqli_query($conn, "SELECT * FROM rentals");
-?> -->
+// $table_query = mysqli_query($conn, "SELECT * FROM rentals");
+$return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE status='returned'");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,22 +42,48 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals");
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Image</th>
+             <th>Order ID</th>
               <th>Title</th>
-              <th>Category</th>
-              <th>Pricing</th>
-              <th>Status</th>
-              <th>Activity</th>
+              <th>Quantity</th>
+              <th>Date rented</th>
+              <th>Date returned</th>
+              <th>Admin Status</th>
+              
             </tr>
           </thead>
           <tbody>
             
-               <tr>
-                <td colspan="6" class="text-center py-5 text-muted">
-                  <i class="fas fa-box-open fa-2x mb-2 d-block"></i>
-                  Nothing to see here.
-                </td>
-              </tr>
+            <?php
+              while ($row = mysqli_fetch_assoc($return_query)) { ?>
+                  <tr>
+                      <td>OR-<?php echo $row['tracking_id']; ?></td>
+                      <td><?php echo $row['title']; ?></td>
+                      <td><?php echo $row['quantity']; ?></td>
+                      <td><?php echo $row['rented_date']; ?></td>
+                      <td><?php echo $row['date_returned']; ?></td>
+                      <td>
+                        
+                        
+
+                       
+                          <form action="../config/auth.php" method="POST" class="d-flex gap-2 align-items-center">
+                            <input type="hidden" name="order_id" value="<?php echo $row['id']; ?>">
+                              <select class= "form-select form-select-sm" style="width: 100px;" name="approval_status">
+                                  <option value="pending" <?php if($row['approval_status'] == 'pending') echo 'selected';?>>pending</option>
+                                  <option value="approved"  <?php if($row['approval_status'] == 'approved') echo 'selected';?>>approved</option>
+                                  <option value="rejected"  <?php if($row['approval_status'] == 'rejected') echo 'selected';?>>rejected</option>
+                              </select>
+                              <button type="submit" class="btn btn-outline-secondary">update</button>
+                              <input type="hidden" name="approval_update" value="1">
+                            
+
+                          </form>
+
+                    
+                      </td>
+                      
+                  </tr>       
+              <?php } ?>
           </tbody>
               
         </table>

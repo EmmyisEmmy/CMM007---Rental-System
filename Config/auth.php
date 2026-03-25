@@ -48,18 +48,18 @@ if (isset($_POST['register_button'])) {
 
 
 
-if (isset($_POST['register_button'])) {
-      $email = $_POST['email'];
-      $password = $_POST['password'];
-}
+// if (isset($_POST['register_button'])) {
+//       $email = $_POST['email'];
+//       $password = $_POST['password'];
+// }
 
 // As an admin, I want to upload items for users to see what is available
 
 
-if (isset($_POST['register_button'])) {
-      $email = $_POST['email'];
-      $password = $_POST['password'];
-}
+// if (isset($_POST['register_button'])) {
+//       $email = $_POST['email'];
+//       $password = $_POST['password'];
+// }
 
 if (isset($_POST["login_button"])) {
     
@@ -73,10 +73,18 @@ if (isset($_POST["login_button"])) {
     if (mysqli_num_rows($outcome) == 1 ) {
         // $_SESSION['password'] = $active['password'];
         if ($password == $active['password']) {
+
+            if ($active['status'] == 'inactive') {
+                $_SESSION['error_login'] = "Account Deactivated";
+                header("Location: ../login/login.php");
+                exit();
+            }
+
             $_SESSION['valid_details'] = "Login Successful";
             $_SESSION['user_id'] = $active['id'];
             $_SESSION['user_name'] = $active['name'];
             $_SESSION['user_role'] = $active['role'];
+
             
 
             if ($active['role'] == 'user') {
@@ -190,18 +198,65 @@ if (isset($_POST["item_delete"])) {
 
 }
 
+if (isset($_POST["user_delete"])) {
+
+    $id_item = $_POST['id_item'];
+    $query = "UPDATE users SET status = 'inactive' WHERE id = '$id_item'";
+    $query_table = mysqli_query($conn, $query);
+    
+    if ($query_table) {
+        $_SESSION['delete_success'] = "item deleted";
+        header("Location: ../admin/userstats.php");
+        exit();
+
+    } else {
+        $_SESSION['deleteitem_failure'] = "deletingfailed";
+        header("Location: ../admin/userstats.php");
+        exit();
+    }
+
+
+
+}
+
+if (isset($_POST["user_return"])) {
+
+    $id_item = $_POST['id_item'];
+    $query = "UPDATE users SET status = 'active' WHERE id = '$id_item'";
+    $query_table = mysqli_query($conn, $query);
+    
+    if ($query_table) {
+        $_SESSION['active_success'] = "user activated";
+        header("Location: ../admin/userstats.php");
+        exit();
+
+    } else {
+        $_SESSION['activation_failure'] = "activatingfailed";
+        header("Location: ../admin/userstats.php");
+        exit();
+    }
+
+
+
+}
+
 if (isset($_POST["item_return"])) {
    
     $id_item = $_POST['id_item'];
+    $user_id = $_SESSION['user_id'];
     $order = mysqli_query($conn, "SELECT * FROM active_orders WHERE id = '$id_item'");
     $order_item = mysqli_fetch_assoc($order);
     $item_id = $order_item['item_id'];
     $quantity = $order_item['quantity'];
-    $query = "UPDATE active_orders SET status = 'returned' WHERE id = '$id_item'";
+    $query = "UPDATE active_orders SET status = 'returned', date_returned=NOW() WHERE id = '$id_item'";
     $query_table = mysqli_query($conn, $query);
     $qty_return = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty + $quantity WHERE id = '$item_id'");
     
     if ($query_table) {
+
+        $notif = "Thank You! You returned item!";
+        mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$notif') ");
+
         $_SESSION['return_success'] = "item successfully returned";
         header("Location:../user/rentals.php");
         exit();
@@ -253,11 +308,15 @@ if (isset($_POST["order_placed"])) {
     
     $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status, due_on, tracking_id)
                 VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active', '$due_on', '$tracking_id')";
+    
             $qty_update = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty - $quantity WHERE id = '$item_id'");
-    $query_table = mysqli_query($conn, $query);
-    $_SESSION['current_order_id'] = mysqli_insert_id($conn);
+            $query_table = mysqli_query($conn, $query);
+            $_SESSION['current_order_id'] = mysqli_insert_id($conn);
     
     if ($query_table) {
+
+        $notif = "Great News! Order is placed succesfully";
+        mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$notif') ");
         
         $_SESSION['order_success'] = "Good News! You placed an order";
         header("Location: ../user/successful.php");
@@ -348,6 +407,40 @@ if (isset($_POST["profile_update"])) {
     }
 
 
+
+}
+
+if (isset($_POST["status_update"])) {
+
+    // var_dump($_POST);
+    // exit();
+    
+    $order_id = $_POST['order_id'];
+    $delivery_status = $_POST['delivery_status'];
+
+    $query_table = mysqli_query($conn, "UPDATE active_orders SET delivery_status= '$delivery_status' WHERE id = '$order_id'");
+    header("Location: ../admin/activerentals.php");
+    exit();
+    // echo mysqli_error($conn);
+    // exit();
+    
+ 
+
+}
+
+if (isset($_POST["approval_update"])) {
+
+    
+    
+    $order_id = $_POST['order_id'];
+    $approval_status = $_POST['approval_status'];
+
+    $query_table = mysqli_query($conn, "UPDATE active_orders SET approval_status= '$approval_status' WHERE id = '$order_id'");
+    header("Location: ../admin/return.php");
+    exit();
+
+    
+ 
 
 }
 

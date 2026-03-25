@@ -1,7 +1,7 @@
-<!-- <?php session_start();
+<?php session_start();
 include("../config/db.php"); 
-$table_query = mysqli_query($conn, "SELECT * FROM rentals");
-?> -->
+$table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE status='active'");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,20 +43,44 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals");
             <tr>
               <th>Order Id</th>
               <th>Title</th>
-              <th>Category</th>
+              <th>Quantity</th>
               <th>Pricing</th>
               <th>Status</th>
+              <th>Tracking</th>
               
             </tr>
           </thead>
           <tbody>
             
-               <tr>
-                <td colspan="6" class="text-center py-5 text-muted">
-                  <i class="fas fa-box-open fa-2x mb-2 d-block"></i>
-                  Nothing to see here.
-                </td>
+              <?php 
+              while ($row = mysqli_fetch_assoc($table_query)) { ?>
+                <tr>
+                    <td>ORD-<?php echo $row['tracking_id']; ?></td>
+                    <td><?php echo $row['title']; ?></td>
+                    <td><?php echo $row['quantity']; ?></td>
+                    <td><?php echo $row['total']; ?></td>
+                    <td><?php echo $row['status']; ?></td>
+                    <td>
+
+                        <!-- <div class="collapse navbar-collapse" id="navbarNavDarkDropdown"> -->
+                      <form action="../config/auth.php" method="POST" class="d-flex gap-2 align-items-center">
+                        <input type="hidden" name="order_id" value="<?php echo $row['id']; ?>">
+                          <select class= "form-select form-select-sm" style="width: 100px;" name="delivery_status">
+                              <option value="warehouse" <?php if($row['delivery_status'] == 'warehouse') echo 'selected';?>>warehouse</option>
+                              <option value="shipped"  <?php if($row['delivery_status'] == 'shipped') echo 'selected';?>>shipped</option>
+                              <option value="received"  <?php if($row['delivery_status'] == 'received') echo 'selected';?>>received</option>
+                          </select>
+                          <button type="submit" class="btn btn-outline-secondary">update</button>
+                          <input type="hidden" name="status_update" value="1">
+                        
+
+                      </form>
+
+                    </td>
+                
               </tr>
+              <?php } ?>
+
           </tbody>
               
         </table>
