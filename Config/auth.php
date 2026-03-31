@@ -257,7 +257,7 @@ if (isset($_POST["item_return"])) {
         $notif = "Thank You! You returned item!";
         mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$notif') ");
 
-        $_SESSION['return_success'] = "item successfully returned";
+        $_SESSION['return_success'] = "You have successfully returned your item!";
         header("Location:../user/rentals.php");
         exit();
 
@@ -275,14 +275,30 @@ if (isset($_POST["order_placed"])) {
 
     // var_dump($_POST);
     // exit(); 
+    $user_id = $_POST['user_id'];
+    // $limit_order_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='$user_id' AND status='active'");$limit_order_count = mysqli_fetch_row($limit_order_query);
+
+    // if ($limit_order_count[0] >= 2) {
+
+    // $_SESSION['order_limit_error'] = "You have reached your renting budget. Kindly return one or more items to continue";
+    // header("Location: ../user/dashboardu.php");
+    // exit();
+    // }
+
 
     $item_id = $_POST['item_id'];
-    $user_id = $_POST['user_id'];
+    
     $quantity = $_POST['qty'];
     $days = $_POST['days'];
 
     $outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
     $active = mysqli_fetch_assoc($outcome);
+    if ($active['item_qty'] <= 0) {
+        $_SESSION['error availability'] = "This item is out of stock. Check again later";
+         header("Location: ../user/dashboardu.php");
+        exit();
+
+    }
     $price= $active['price'];
     $total = $quantity * $days * $price;
     $due_on = date('Y-m-d', strtotime("+$days days"));
@@ -290,24 +306,26 @@ if (isset($_POST["order_placed"])) {
 
     // $title_outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
     // $active_title = mysqli_fetch_assoc($title_outcome);
+
+
+
     $title = $active['title'];
 
-    $stock_qty = $active['item_qty'];
+    // $stock_qty = $active['item_qty'];
 
-    if ($stock_qty<= 20) {
-        $max_qty = 1;
+    if ($quantity > 2) { 
+        $_SESSION['limit_order'] = "Only 2 orders maximum is allowed. Return an item";
+        header("Location: ../user/order.php?id=$item_id");
+        exit();
 
-    } elseif ($stock_qty <= 40) {
-        $max_qty = 2;
+        
 
-    } else {
-        $max_qty = 3;
 
     }
 
     
     $query = "INSERT INTO active_orders (user_id, item_id, days, quantity, total, title, status, due_on, tracking_id)
-                VALUES ('$user_id','$item_id','$quantity','$days', $total, '$title','active', '$due_on', '$tracking_id')";
+                VALUES ('$user_id','$item_id','$days', '$quantity', $total, '$title','active', '$due_on', '$tracking_id')";
     
             $qty_update = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty - $quantity WHERE id = '$item_id'");
             $query_table = mysqli_query($conn, $query);
@@ -328,6 +346,35 @@ if (isset($_POST["order_placed"])) {
         exit();
     }
 
+
+}
+
+if (isset($_POST["rent_item"])) {
+
+    $user_id = $_SESSION['user_id'];
+    $item_id = $_POST['item_id'];
+    $limit_order_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='$user_id' AND status='active'");$limit_order_count = mysqli_fetch_row($limit_order_query);
+
+
+
+    if ($limit_order_count[0] >= 2) {
+
+    $_SESSION['order_limit_error'] = "You have reached your renting budget. Kindly return one or more items to continue";
+    header("Location: ../user/dashboardu.php");
+    exit();
+    }
+
+    $outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
+    $active = mysqli_fetch_assoc($outcome);
+    if ($active['item_qty'] <= 0) {
+    $_SESSION['error_availability'] = "This item is out of stock. Check again later";
+        header("Location: ../user/dashboardu.php");
+    exit();
+
+    }
+
+ header("Location: ../user/Order.php?id=$item_id");
+    exit();
 
 }
 
@@ -494,6 +541,49 @@ if (isset($_POST['cart_order'])) {
     }
     header("Location: ../user/successful.php");
     exit();
+}
+
+if (isset($_POST["order_extend"])) {
+
+    // var_dump($_POST);
+    // exit(); 
+    
+    $order_id = $_POST['order_id'];
+    $user_id = $_SESSION['user_id'];
+    $more_days = $_POST['more_days'];
+    $extra = $_POST['extra'];
+
+    
+    
+
+    $order_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE id='$order_id'");
+    $new_order = mysqli_fetch_assoc($order_query);
+
+    $due_on_new = date('Y-m-d', strtotime($new_order['due_on'] . " +$more_days days"));
+
+
+    
+    $query = "UPDATE active_orders SET days = + '$more_days', total = total + '$extra', due_on = '$due_on_new' WHERE id = '$order_id'";
+    $query_table = mysqli_query($conn, $query);
+                
+    
+    
+    if ($query_table) {
+
+        $notif = "Order has been succesfully extended";
+        mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$notif') ");
+        
+        $_SESSION['order_extend'] = "You've extended your order";
+        header("Location: ../user/rentals.php");
+        exit();
+
+    } else {
+        $_SESSION['extension_failure'] = "order extension failed";
+        header("Location: ../user/extenddelivery.php");
+        exit();
+    }
+
+
 }
 ?>
 

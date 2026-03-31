@@ -2,6 +2,14 @@
 include("../config/db.php"); 
 // $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
 $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{$_SESSION['user_id']}'");
+$amount_query = mysqli_query($conn, "SELECT SUM(total) FROM active_orders WHERE user_id='{$_SESSION['user_id']}'");
+$amount = mysqli_fetch_row($amount_query);
+$orderno_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='{$_SESSION['user_id']}'");
+$orderno = mysqli_fetch_row($orderno_query);
+$active_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='{$_SESSION['user_id']}' AND status='active'");
+$active = mysqli_fetch_row($active_query);
+$return_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='{$_SESSION['user_id']}' AND status='returned'");
+$return = mysqli_fetch_row($return_query);
 ?>
 
 
@@ -10,11 +18,21 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order History</title>
+  <title>Analytics</title>
   <link rel="stylesheet" href="../assets/css/userrentals.css">
   <!-- <link rel="stylesheet" href="./assets/css/home.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+    .arrange {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      
+    }
+
+  </style>
   
 </head>
 
@@ -22,14 +40,49 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
 
 <?php include("navbaru.php"); ?>
 
-<!-- Main content container -->
-<div class="container mt-5">
 
 
-  <!-- Active Orders Tab -->
+<div class="container mt-5 px-5" style="justify-content: space-between;">
+
+  
+  <h4>Analytics</h4>
+
+
+    <div class="card mb-3 p-3 container mt-4 px-5 d-flex flex-row">
+        <div class="arrange" style="border-right: 1px solid #e0e0e0;">
+          <strong><p>Total Amount Spent</p></strong>
+          <p>£ <?php echo $amount[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
+          
+        </div>
+
+        <div class="arrange" style="border-right: 1px solid #e0e0e0;">
+          <strong><p>No. of Orders</p></strong>
+          <p><?php echo $orderno[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
+        </div>
+
+        <div class="arrange" style="border-right: 1px solid #e0e0e0;">
+          <strong><p>Active Orders</p></strong>
+          <p><?php echo $active[0]; ?> <i class="fas fa-arrow-trend-down" style="color: red;"></i></p>
+        </div>
+        
+        <div class="arrange" style="border-right: 1px solid #e0e0e0;">
+          <strong><p>Returned</p></strong>
+          <p><?php echo $return[0]; ?> <i class="fas fa-arrow-trend-down" style="color: red;"></i></p></p>
+        </div>
+
+         <div class="arrange">
+          <strong><p>Cancelled</p></strong>
+          <p>2</p>
+        </div>
+      
+    </div>
+ 
+
+  <hr>
+
   <div class="tab-pane fade show active" id="active-orders">
     <div class="card">
-      <div class="card-header bg-light text-dark">History</div>
+      <div class="card-header bg-light text-dark">Rental History</div>
       <div class="card-body p-0">
         <table class="table mb-0">
           <thead>
@@ -37,10 +90,9 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
               <th>Item</th>
               <th>Quantity</th>
               <th>days</th>
-              <th>total</th>
+              <th>Spent</th>
               <th>Date Rented</th>
-              
-              <th>Action</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -53,10 +105,11 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='{
                       <td><?php echo $row['total']; ?></td>
                       <td><?php echo $row['rented_date']; ?></td>
                       
-                      <td>
+                       <td>
                         
-                        <form action= "#" method="POST">
-                        <button type="submit" name= "item_add" class="btn btn-success btn-sm">Return</button>
+                        <form action= "../config/auth.php" method="POST">
+                        <span class="badge rounded-pill text-bg-secondary">Returned</span>
+                        <!-- <img src="../assets/image/redo.png" style= "width: 18px; height: 18px;"> -->
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
                       </td>

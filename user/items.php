@@ -12,6 +12,7 @@ $row = mysqli_fetch_assoc($table_query);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="../assets/css/userrentals.css">
   <link rel="stylesheet" href="../assets/css/userrentals.css">
   <link rel="stylesheet" href="../assets/css/items.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -68,7 +69,10 @@ $row = mysqli_fetch_assoc($table_query);
             <div class="card p-4" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
 
                 <h4>Featured Items</h4>
-                <ul>Item 1</ul>
+                <ul>
+                  <li>Item 1</li>
+
+                </ul>
 
             </div>
 
@@ -80,7 +84,16 @@ $row = mysqli_fetch_assoc($table_query);
 
 </div>
   
-<?php include("../footer.php"); ?>
+<footer class="footer-main mt-5">
+  <div class="content-footer text-center py-3">
+    <p>&copy; 2026 Orientals. All rights reserved.</p>
+    <ul class="footer-links list-inline">
+      <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+      <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+      <li class="list-inline-item"><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+</footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </html>

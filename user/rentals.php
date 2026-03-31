@@ -88,9 +88,29 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
                       <td>
                         
                         <form action= "../config/auth.php" method="POST">
-                        <button type="submit" name= "item_return" class="btn btn-success btn-sm">Return</button>
+                        <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success btn-sm">Return</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Thank You!</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>What's the condition of the item?</p>
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bad</button>
+                                      <button type="submit" name= "item_return" class="btn btn-secondary">Good</button>
+                                      <p>Leave a Review on your item</p>
+                                    </div>
+                                    <!-- <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="submit" name= "item_return" class="btn btn-primary">return</button>
+                                    </div> -->
+                                  </div>
+                                </div>
+                              </div>
                         <button type="submit" name= "#" class="btn btn-danger btn-sm">Cancel Order</button>
-                        <a href="#"><img src="../assets/image/extend.png" style= "width: 25px; height: 25px;"></a>
+                        <a href="extenddelivery.php?id=<?php echo $row['id']; ?>"><img src="../assets/image/extend.png" style= "width: 25px; height: 25px;"></a>
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
                       </td>
@@ -179,6 +199,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<?php include("../notification.php"); ?>
 
 <script>
   const time = document.querySelectorAll(".count_time");

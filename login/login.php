@@ -19,13 +19,17 @@
 
         <div class="graphics_2">
 
-          <div class="middle">
+          <div class="middle" style="position: relative;">
 
-                    <form action="../config/auth.php" method="post">
+                    
+
+                    <form action="../config/auth.php" method="post" autocomplete="off">
 
                         <div class="logo_spot">
                           <img src= "../assets/image/logo_use.png">
                         </div>
+                        
+                        <div class="position-absolute top-0 start-0 m-3"><a href="../index.php"><i class="fas fa-arrow-left"></i> Go back</a></div>
                         
                         <h1>Orientals</h1>
 
@@ -47,11 +51,7 @@
                               required>
 
                             
-                            <i 
-                              class="fa-solid fa-eye fa-sm position-absolute top-50 end-0 translate-middle-y me-3"
-                              id="togglePassword"
-                              style="cursor:pointer;">
-                            </i>
+                            <i class="fa-solid fa-eye fa-sm position-absolute top-50 end-0 translate-middle-y me-3" id="togglePassword" style="cursor:pointer;"></i>
                           </div>
                        
                         <div class="selection">
@@ -94,6 +94,29 @@
           
     </div>
 
+<script>
+  document.getElementById('togglePassword').addEventListener('click', function() {
 
+      console.log('clicked');
+      console.log(this.classList);
+      const password = document.getElementById('password');
+      
+      if (password.type === 'password') {
+          password.type = 'text';
+          this.classList.remove('fa-eye');
+          this.classList.add('fa-eye-slash');
+
+      } else {
+        password.type = 'password';
+        this.classList.remove('fa-eye-slash');
+        this.classList.add('fa-eye');
+
+
+
+      }
+
+
+  });
+</script>
 </body>
 </html>

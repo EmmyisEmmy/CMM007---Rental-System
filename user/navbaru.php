@@ -15,9 +15,9 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboardu.php">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="Track.php">Order Tracking</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Orders</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboardu.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="Track.php">Track Order</a></li>
+        <li class="nav-item"><a class="nav-link" href="Analytics.php">Analytics</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Rentals
@@ -51,6 +51,9 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
           </div>
           <a href="cart.php" class="position-relative text-dark fs-5">
              <img src="../assets/image/addcart.png" style= "width: 23px; height: 23px;">
+             <span class="position-absolute top-0 start-100 translate-middle p-1  border border-light rounded-circle" style="background-color: #ff69b4;">
+            <span class="visually-hidden">New alerts</span>
+            
               
           </a>
           <a href="#" class="position-relative text-dark fs-5">
@@ -58,9 +61,9 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
           </a>
 
           <div class="dropdown pe-2">
-              <a href="#" class="position-relative text-dark fs-5" data-bs-toggle="dropdown">
+              <a href="#" style="text-decoration: none;" class="position-relative text-dark fs-5" data-bs-toggle="dropdown">
                 <img src="../assets/image/avatar.png" style= "width: 35px; height: 35px;">
-                <span><?php echo $_SESSION['user_name']; ?></span>
+                <span style= "font-size: 16px;"><?php echo $_SESSION['user_name']; ?></span>
 
               </a>
                   <ul class="dropdown-menu dropdown-menu-end notification_resize">

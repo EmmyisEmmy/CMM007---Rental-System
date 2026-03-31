@@ -15,7 +15,9 @@ $cart_count = mysqli_fetch_row($count_cart_query);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/footer.css">
+    <!-- <link rel="stylesheet" href="../assets/css/footer.css"> -->
+    
+  <link rel="stylesheet" href="../assets/css/userrentals.css">
   <title>Cart</title>
 </head>
 <body>
@@ -99,7 +101,16 @@ $cart_count = mysqli_fetch_row($count_cart_query);
 
 
     
-<?php include("../footer.php"); ?>
+<footer class="footer-main mt-5">
+  <div class="content-footer text-center py-3">
+    <p>&copy; 2026 Orientals. All rights reserved.</p>
+    <ul class="footer-links list-inline">
+      <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+      <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+      <li class="list-inline-item"><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

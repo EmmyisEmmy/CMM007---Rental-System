@@ -5,6 +5,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$id'");
 $row = mysqli_fetch_assoc($table_query);
 $user_query = mysqli_query($conn, "SELECT * FROM users WHERE id='{$_SESSION['user_id']}'");
 $user = mysqli_fetch_assoc($user_query);
+
 ?>
 
 
@@ -15,9 +16,9 @@ $user = mysqli_fetch_assoc($user_query);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"> -->
   <link rel="stylesheet" href="../assets/css/orderpage.css">
-  <link rel="stylesheet" href="../assets/css/home.css">
+  <!-- <link rel="stylesheet" href="../assets/css/home.css"> -->
   <link rel="stylesheet" href="../assets/css/footer.css">
   <title>Order</title>
 </head>
@@ -56,7 +57,7 @@ $user = mysqli_fetch_assoc($user_query);
                   </div>
                   <div class="mb-1">
                     <label class="form-label">Quantity</label>
-                    <input type="number"  name= "qty" oninput="update()" id="qty" step="1" class="form-control" min="1" placeholder="0" >
+                    <input type="number"  name= "qty" oninput="update()" id="qty" step="1" class="form-control" min="1" max="2" placeholder="0" >
 
                   </div>
               </div>
