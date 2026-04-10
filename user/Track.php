@@ -1,6 +1,14 @@
 <?php session_start();
 include("../config/db.php"); 
 $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'available'");
+if (isset($_GET['search']) && $_GET['search'] != '') {
+  $term = $_GET['search'];
+  $user_id = $_SESSION['user_id'];
+  $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE tracking_id='$term' AND user_id = '$user_id'");
+  $search_item = mysqli_fetch_assoc($table_query);  
+  
+
+}
 ?>
 
 
@@ -38,30 +46,29 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
     <img src="../assets/image/delivery.png" style="width: 150px; height: 150px;" alt="Orientals Logo">
      <h3>Track Your Rental</h3>
      <div class="box">
-        <form action="dashboardu.php" method="GET">
+        <form action="Track.php" method="GET">
             <div class="typing_box">
-                <input name="search"  type="text" placeholder="Input Order ID...start with OR-" required>
+                <input name="search"  type="text" placeholder="Input Order ID..." required>
                 <button type="submit">
                   <i class= "fas fa-search icon_search"></i>
                 </button>
 
             </div>
 
-            
+          <?php if(isset($search_item) && $search_item) { ?>
             <div class="row">
           
 
                   <div class="card mb-3 p-3 container mt-4 px-5">
 
-
                         <div class="d-flex align-items-center justify-content-between">
                             
-                            <img src="../assets/image/car.jpg" style="width:80px; height:80px; object-fit:cover; border-radius: 8px;">
-                            <span>SUV</span>
-                             <span>ORDER ID</span>
-                             <span>QTY: 4</span>
-                            <strong><span>Black SUV</span></strong>
-                            <span class="badge text-bg-dark" style= "right: 8px;">Shipped</span>
+                            <!-- <img src="../assets/image/<?php echo $rental['image']; ?>" style="width:80px; height:80px; object-fit:cover; border-radius: 8px;"> -->
+                            <span><?php echo $search_item['title']; ?> </span>
+                             <span><?php echo $search_item['tracking_id']; ?></span>
+                             <span>QTY: <?php echo $search_item['quantity']; ?></span>
+                              
+                            <span class="badge text-bg-dark" style= "right: 8px;"><?php echo $search_item['delivery_status']; ?></span>
                             
 
                         </div>
@@ -69,6 +76,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
                   </div>
              
             </div>
+          <?php } ?>
         </form>
         
       </div>

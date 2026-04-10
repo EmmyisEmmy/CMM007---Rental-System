@@ -18,6 +18,7 @@
 
      
         <?php include("sidebar.php"); ?>
+        <?php include("navbar.php"); ?>
       
         <div class="content">
           <div class="top">

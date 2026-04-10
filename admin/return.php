@@ -18,9 +18,10 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE status='r
 </head>
 <body>
 
-        <div class="sidebar">
-          <?php include("sidebar.php"); ?>
-        </div>
+        
+        <?php include("sidebar.php"); ?>
+        <?php include("navbar.php"); ?>
+        
       
         <div class="content">
           <div class="top">

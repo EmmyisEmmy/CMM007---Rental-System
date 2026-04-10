@@ -9,12 +9,15 @@ if (isset($_POST['register_button'])) {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     $role = $_POST['role'];
+    $usereg_id = rand(100000, 999999);
 
     if ($password != $confirm_password) {
         $_SESSION['register_error'] = "Passwords do not match!";
         header("Location: ../user/register.php");
         exit();
     }
+
+    $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
     $checkEmail = mysqli_query($conn, "SELECT email FROM users WHERE email='$email'");
 
@@ -27,7 +30,7 @@ if (isset($_POST['register_button'])) {
     } else {
 
         $query = "INSERT INTO users (name, email, password, role)
-                  VALUES ('$name','$email','$password','$role')";
+                  VALUES ('$name','$email','$password_hashed','$role')";
 
         $query_run = mysqli_query($conn, $query);
 
@@ -72,7 +75,7 @@ if (isset($_POST["login_button"])) {
 
     if (mysqli_num_rows($outcome) == 1 ) {
         // $_SESSION['password'] = $active['password'];
-        if ($password == $active['password']) {
+        if (password_verify($password, $active['password'])) {
 
             if ($active['status'] == 'inactive') {
                 $_SESSION['error_login'] = "Account Deactivated";
@@ -144,7 +147,45 @@ if (isset($_POST["login_button"])) {
     }
  }
 
+if (isset($_POST["new_staff"])) {
+    
+   
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $role = 'admin';
 
+    $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+
+    $checkEmail = mysqli_query($conn, "SELECT email FROM users WHERE email='$email'");
+
+    if (mysqli_num_rows($checkEmail) > 0) {
+
+        $_SESSION['register_error'] = "The Email already exists!";
+        header("Location: ../admin/usermanagement.php");
+        exit();
+
+    } else {
+
+
+        $query = "INSERT INTO users (name, email, password, role)
+                    VALUES ('$name','$email','$password_hashed', '$role')";
+            
+        $query_table = mysqli_query($conn, $query);
+
+        if ($query_table) {
+            $_SESSION['staffcreate_success'] = "New Staff Created!";
+            header("Location: ../admin/usermanagment.php");
+            exit();
+
+        } else {
+            $_SESSION['staffcreate_failure'] = "Failed staff create";
+            header("Location: ../admin/usermanagement.php");
+            exit();
+        }
+    }
+
+}
 
 if (isset($_POST["item_publish"])) {
 
@@ -271,6 +312,37 @@ if (isset($_POST["item_return"])) {
 
 }
 
+if (isset($_POST["order_cancel"])) {
+   
+    $id_item = $_POST['id_item'];
+    $user_id = $_SESSION['user_id'];
+    $order = mysqli_query($conn, "SELECT * FROM active_orders WHERE id = '$id_item'");
+    $order_item = mysqli_fetch_assoc($order);
+    $item_id = $order_item['item_id'];
+    $quantity = $order_item['quantity'];
+    $query = "UPDATE active_orders SET status = 'cancelled', date_returned=NOW() WHERE id = '$id_item'";
+    $query_table = mysqli_query($conn, $query);
+    $qty_return = mysqli_query($conn, "UPDATE rentals SET item_qty = item_qty + $quantity WHERE id = '$item_id'");
+    
+    if ($query_table) {
+
+        $notif = "Your order has been cancelled";
+        mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$notif') ");
+
+        $_SESSION['cancelled_success'] = "Your order has been cancelled";
+        header("Location:../user/rentals.php");
+        exit();
+
+    } else {
+        $_SESSION['cancelled_failure'] = "cancellation failed";
+        header("Location: ../user/rentals.php");
+        exit();
+    }
+
+
+
+}
+
 if (isset($_POST["order_placed"])) {
 
     // var_dump($_POST);
@@ -335,10 +407,22 @@ if (isset($_POST["order_placed"])) {
 
         $notif = "Great News! Order is placed succesfully";
         mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$notif') ");
+
+        $admin_notification =  mysqli_query($conn, "SELECT id FROM users WHERE role='admin'");
+        while($admin = mysqli_fetch_assoc($admin_notification)) {
+            
+            $notif_admin = mysqli_real_escape_string($conn,"User placed an Order! Check it out");
+             mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('{$admin['id']}', '$notif_admin') ");
+
+        }
         
         $_SESSION['order_success'] = "Good News! You placed an order";
         header("Location: ../user/successful.php");
+
         exit();
+
+       
+           
 
     } else {
         $_SESSION['item_failure'] = "order_failed";

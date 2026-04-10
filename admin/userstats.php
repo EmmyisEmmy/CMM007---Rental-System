@@ -18,6 +18,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM users");
 <body>
 
       <?php include("sidebar.php"); ?>
+      <?php include("navbar.php"); ?>
         
       
         <div class="content">

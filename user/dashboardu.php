@@ -12,9 +12,31 @@ $return_order_count = mysqli_fetch_row($return_query);
 // $return_query = mysqli_query($conn, "SELECT COUNT (*) FROM active_orders WHERE status= 'returned'");
 // $retuned_order_count = mysqli_fetch_row($return_query);
 
-if (isset($_GET['search']) && $_GET['search'] != '') {
-  $term = $_GET['search'];
-  $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE title LIKE '%$term%'");  
+$search = $_GET['search'] ?? '';
+$category = $_GET['category'] ?? '';
+$condition = $_GET['condition'] ?? '';
+
+if ($search != '' || $category != '' ||$condition != '' ) {
+
+    $where = "WHERE status='available'";
+    if ($search != '' ) {
+      $where .= "AND title LIKE '%$search%'";
+
+    }
+    if ($category != '' ) {
+      $where .= "AND category='$category'";
+      
+    }
+    if ($condition != '' ) {
+      $where .= "AND item_condition='$condition'";
+      
+    }
+
+
+    // $term = $_GET['search'];
+    $table_query = mysqli_query($conn, "SELECT * FROM rentals $where");  
+}else {
+  $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status='available'");  
 
 }
 ?>
@@ -50,22 +72,22 @@ if (isset($_GET['search']) && $_GET['search'] != '') {
                 <span style="color: #ccc; font-size: 25px; padding: 5 10px;">|</span>
                 
 
-                <select style="border: none; outline: none; background: transparent;">
+                <select name="category" style="border: none; outline: none; background: transparent;">
                   <option value="">All Categories</option>
                   <option value="Construction">Construction</option>
-                  <option value="Construction">Tools & DIY</option>
-                  <option value="Construction">Electronics & Gadgets</option>
-                  <option value="Construction">Sports & Recreation</option>
-                  <option value="Construction">Automative & Transportation</option>
-                  <option value="Construction">Office & Work</option>
-                  <option value="Construction">Gardening & Landscaping</option>
-                  <option value="Construction">Safety & Protective Equipment</option>
+                  <option value="Tools & DIY">Tools & DIY</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Sports & Recreation">Sports & Recreation</option>
+                  <option value="Automative & Transportation">Automative & Transportation</option>
+                  <option value="Office & Work">Office & Work</option>
+                  <option value="Gardening & Landscaping">Gardening & Landscaping</option>
+                  <option value="Safety & Protective Equipment">Safety & Protective Equipment</option>
                 </select>
                 
 
                 <span style="color: #ccc; font-size: 25px; padding: 5 10px;">|</span>
                
-                   <select style="border: none; outline: none; background: transparent; ">
+                   <select name="condition" style="border: none; outline: none; background: transparent; ">
                       <option value="">Item Condition</option>
                       <option value="new">New</option>
                       <option value="good">Good</option>
@@ -129,7 +151,7 @@ if (isset($_GET['search']) && $_GET['search'] != '') {
 <?php
 while ($row = mysqli_fetch_assoc($table_query)) { ?>
             <div class="category" data-category="<?php echo $row['category'];?>">
-              <div class="image position-relative" style="display: inline-block; width: 100%;"><img src="../assets/image/<?php echo $row['image'];?>">
+              <div class="image position-relative" style="display: inline-block; width: 100%;"><img src="../assets/image/<?php echo $row['image'];?>" loading="lazy">
               <span class="badge text-bg-dark position-absolute" style= "top: 8px; right: 8px;"><?php echo $row['item_condition'];?></span>
               <span class="badge text-bg-dark position-absolute" style= "bottom: 8px; left: 8px;"><?php echo $row['category'];?></span>
               </div>
@@ -235,6 +257,20 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
 </script>
 
   <?php include("../footer.php"); ?>
+
+  <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69cf84c40987d41c34228b7d/1jl99t85p';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
 
 </body>
 </html>

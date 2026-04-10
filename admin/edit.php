@@ -22,6 +22,7 @@ $row = mysqli_fetch_assoc($table_query);
 
      
         <?php include("sidebar.php"); ?>
+        <?php include("navbar.php"); ?>
       
         <div class="content">
           <div class="top">

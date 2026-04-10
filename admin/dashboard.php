@@ -25,8 +25,10 @@ $return_order_count = mysqli_fetch_row($count_return_query);
 <body>
 
       
-        <?php include("sidebar.php"); ?>
-       
+
+      
+       <?php include("sidebar.php"); ?>
+       <?php include("navbar.php"); ?>  
         <div class="content">
           <div class="top">
             <div class="title">

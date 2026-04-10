@@ -19,6 +19,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status != 'delet
 
        
       <?php include("sidebar.php"); ?>
+      <?php include("navbar.php"); ?>
       
       
         <div class="content">

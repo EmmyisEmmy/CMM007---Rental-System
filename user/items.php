@@ -70,7 +70,12 @@ $row = mysqli_fetch_assoc($table_query);
 
                 <h4>Featured Items</h4>
                 <ul>
-                  <li>Item 1</li>
+                  <li><a href="items.php?id=15">Black SUV</a></li>
+                  <li><a href="items.php?id=20">Rental Truck</a></li>
+                  <li><a href="items.php?id=18">Office Chair</a></li>
+                  <li><a href="items.php?id=22">Table Tennis Racket</a></li>
+                  <li><a href="items.php?id=16">Drone</a></li>
+                  
 
                 </ul>
 
@@ -94,8 +99,21 @@ $row = mysqli_fetch_assoc($table_query);
     </ul>
   </div>
 </footer>
-</body>
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69cf84c40987d41c34228b7d/1jl99t85p';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
 
 

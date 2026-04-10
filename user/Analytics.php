@@ -10,6 +10,8 @@ $active_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE us
 $active = mysqli_fetch_row($active_query);
 $return_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='{$_SESSION['user_id']}' AND status='returned'");
 $return = mysqli_fetch_row($return_query);
+$cancel_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='{$_SESSION['user_id']}' AND status='cancelled'");
+$cancel = mysqli_fetch_row($cancel_query);
 ?>
 
 
@@ -51,28 +53,28 @@ $return = mysqli_fetch_row($return_query);
     <div class="card mb-3 p-3 container mt-4 px-5 d-flex flex-row">
         <div class="arrange" style="border-right: 1px solid #e0e0e0;">
           <strong><p>Total Amount Spent</p></strong>
-          <p>£ <?php echo $amount[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
+          <p style="font-size: 23px;">£ <?php echo $amount[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
           
         </div>
 
         <div class="arrange" style="border-right: 1px solid #e0e0e0;">
           <strong><p>No. of Orders</p></strong>
-          <p><?php echo $orderno[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
+          <p style="font-size: 23px;"><?php echo $orderno[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
         </div>
 
         <div class="arrange" style="border-right: 1px solid #e0e0e0;">
           <strong><p>Active Orders</p></strong>
-          <p><?php echo $active[0]; ?> <i class="fas fa-arrow-trend-down" style="color: red;"></i></p>
+          <p style="font-size: 23px;"><?php echo $active[0]; ?> <i class="fas fa-arrow-trend-down" style="color: red;"></i></p>
         </div>
         
         <div class="arrange" style="border-right: 1px solid #e0e0e0;">
           <strong><p>Returned</p></strong>
-          <p><?php echo $return[0]; ?> <i class="fas fa-arrow-trend-down" style="color: red;"></i></p></p>
+          <p style="font-size: 23px;"><?php echo $return[0]; ?> <i class="fas fa-arrow-trend-down" style="color: red;"></i></p></p>
         </div>
 
          <div class="arrange">
           <strong><p>Cancelled</p></strong>
-          <p>2</p>
+          <p style="font-size: 23px;"><?php echo $cancel[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
         </div>
       
     </div>
@@ -127,7 +129,17 @@ $return = mysqli_fetch_row($return_query);
 </div>
 
 
-
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69cf84c40987d41c34228b7d/1jl99t85p';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
 
 <footer class="footer-main mt-5">
   <div class="content-footer text-center py-3">

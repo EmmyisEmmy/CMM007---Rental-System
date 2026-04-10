@@ -70,13 +70,16 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
                     
                     <!-- <li><button class="dropdown-item" type="button">Profile</button></li>
                     <li><button class="dropdown-item" type="button">Change Language</button></li> -->
-                    <li><a class="dropdown-item" href="profile.php"> User id: </a></li><hr>
-                    <li><a class="dropdown-item" href="profile.php"> 
+                    <li class=" align-items-center px-3 "><p> User id: ID</p></a></li><hr>
+                    <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/profileuser.png" style= "width: 18px; height: 18px; margin-right: 8px;"></i> <a class="dropdown-item" href="profile.php"> 
                      Profile
                     </a></li>
-                    <li><a class="dropdown-item" href="../config/auth.php?logout=true"> 
-                     Log out
+                    <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/language.png" style= "width: 18px; height: 18px; margin-right: 8px;"></i> <a class="dropdown-item" href="#"> 
+                     Language
                     </a></li>
+                    <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/report.png" style= "width: 19px; height: 19px; margin-right: 8px;"></i> <a class="dropdown-item" href="tickets.php">Report an Issue</a></li>
+                    <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/logoutuser.png" style= "width: 18px; height: 18px; margin-right: 8px;"></i> <a class="dropdown-item" href="../config/auth.php?logout=true">Log out</a></li>
+                    
                     
                     
                   </ul>

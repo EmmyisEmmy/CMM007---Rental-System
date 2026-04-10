@@ -12,8 +12,12 @@
 <body>
 
      <?php include("sidebar.php"); ?>
+     <?php include("navbar.php"); ?>
+      
 
         <div class="content">
+
+        
      
           <div class="top">
             <div class="title">
@@ -22,27 +26,29 @@
             </div>
           </div>
 
-           <div class="content">
-            
+           <div class="card  mb-3 p-3 container mt-4 px-5 d-flex flex-row">
 
-                        <form>
+              <div class="card-body">
+
+                        <form action="../config/auth.php" method="POST">
                             <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Preferred Username</label>
-                              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <label  class="form-label">Preferred Username</label>
+                              <input type="text" name="name" class="form-control" >
                               
                             </div>
                             <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <label  class="form-label">Email address</label>
+                              <input type="email" name="email" class="form-control" >
                               
                             </div>
                             <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1">
+                              <label  class="form-label">Password</label>
+                              <input type="password" name="password" class="form-control">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name= "new_staff" class="btn btn-primary">Submit</button>
                         </form>
 
+            </div>
 
             
              

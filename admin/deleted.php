@@ -17,7 +17,9 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status = 'delete
 </head>
 <body>
 
-      <?php include("sidebar.php"); ?>
+
+        <?php include("sidebar.php"); ?>
+       <?php include("navbar.php"); ?> 
        
       
         <div class="content">
@@ -73,6 +75,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status = 'delete
     </div>
 
   </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>

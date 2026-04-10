@@ -1,6 +1,4 @@
 
-
-
 <?php
             $message = '';
             if (isset($_SESSION['order_limit_error'])) {
@@ -18,6 +16,10 @@
             } elseif (isset($_SESSION['return_success'])){
             $message = $_SESSION['return_success']; 
             unset($_SESSION['return_success']);
+
+            } elseif (isset($_SESSION['cancelled_success'])){
+            $message = $_SESSION['cancelled_success']; 
+            unset($_SESSION['cancelled_success']);
             }
 
           if ($message != '') { ?>

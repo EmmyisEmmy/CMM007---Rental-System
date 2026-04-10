@@ -10,16 +10,25 @@
 
 }
 
+.navigator {
 
-body{
+  transition: left 0.3s;
+  position: fixed;
+  top: 0;
+  left: 110px;
+  right: 0;
+  transition: left 0.3s;
+  z-index: 1001;
+}
+/* body{
 
   display: flex;
 
-}
+} */
 
-.sidebar{
+.sidebar {
 
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -29,15 +38,34 @@ body{
   color: white;
   overflow: hidden;
   background: #003049;
+  z-index: 1000;
+  transition: width 0.3s;
+
 
 }
 
-.sidebar:hover {
-
+.sidebar:hover{
+  
   width: 245px;
-  transition: 0.3s;
 
 }
+
+.sidebar:hover ~ .content {
+  
+  margin-left: 245px;
+  transition: margin-left 0.3s;
+
+}
+
+.sidebar:hover ~ .navigator {
+  
+  left: 245px;
+  transition: left 0.3s;
+
+}
+
+
+
 
 .logo{
 
@@ -93,11 +121,21 @@ body{
   left: 0;
 }
 
-.content {
+.navbar {
   position: relative;
-  background: white;
-  width: 100%;
+  z-index: 1000;
+
+}
+
+
+
+.content {
+  /* position: relative;
+  background: white; */
   padding: 20px;
+  margin-left: 110px;
+  margin-top: 56px;
+  margin-left: 110px;
 
 }
  

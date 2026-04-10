@@ -53,29 +53,38 @@ $user = mysqli_fetch_assoc($user_query)
 
             <hr>
 
-            <h6 class="mb-3 fw-bold">Shipping & Billing Address</h6>
+            <h6 class="mb-3 fw-bold">Create a Ticket</h6>
 
             <div class="mb-3">
-                  <label class="form-label">Address</label>
-                  <input type="text" name="address" class="form-control" placeholder="Street address">
+                    <label class="form-label">Describe the Issue</label>
+                    <select name="reason" class="form-select">
+                        <option value="">Choose One</option>
+                        <option value="Damaged Item">Damaged Item</option>
+                        <option value="Billing Issue">Billing Issue</option>
+                        <option value="Return Problem">Return Problem</option>
+                        <option value="Delivery Issue">Delivery Issue</option>
+                        <option value="General Inquiry">General Inquiry</option>
 
-            </div>
+                    </select>
+                  </div>
 
             <div class="row">
 
-              <div class="col-md-6 mb-3">
-                  <label class="form-label">City</label>
-                  <input type="text" name="city" class="form-control" placeholder="City">
+              <div class="mb-3">
+                    <div class="mb-3">
+                      <label for="exampleFormControlTextarea1" class="form-label">Help us understand the issue</label>
+                      <textarea class="form-control" style="  outline: none;" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
               </div>
 
-              <div class="col-md-6 mb-3">
-                  <label class="form-label">Postcode</label>
-                  <input type="text" name="postcode" class="form-control" placeholder="Postcode">
-              </div>
+              <div class="mb-3">
+                    <label class="form-label">Upload Image</label>
+                    <input type="file" name="image" class="form-control" required>
+                  </div>
             </div>
 
-            <button type="submit" name="profile_update" class="btn w-80" style="background-color: #003049; color: white;">
-              Save Changes
+            <button type="submit" name="ticket_submit" class="btn w-80" style="background-color: #003049; color: white;">
+              Submit Ticket
             </button>
 
 
@@ -85,8 +94,7 @@ $user = mysqli_fetch_assoc($user_query)
 
 <?php include("../footer.php"); ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){

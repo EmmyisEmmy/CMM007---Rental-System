@@ -17,8 +17,10 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE status='ac
 </head>
 <body>
 
-        
+
+     
         <?php include("sidebar.php"); ?>
+        <?php include("navbar.php"); ?>
         
       
         <div class="content">
@@ -89,6 +91,8 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE status='ac
     </div>
 
   </div>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>

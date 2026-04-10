@@ -1,13 +1,4 @@
-       <!-- <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand">Admin Panel</a>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </nav> 
-         -->
+
         
         
         
@@ -27,8 +18,8 @@
               </li>
               <li>
                 <a href="usermanagment.php">
-                  <i class="fas fa-user"></i>
-                  <span>User management</span>
+                  <i class="fas fa-user-plus"></i>
+                  <span>Add staff</span>
 
                 </a>
 
@@ -36,7 +27,7 @@
               <li>
                 <a href="stats.php">
                   <i class="fas fa-chart-bar"></i>
-                  <span>Statistics</span>
+                  <span>Site traffic</span>
 
                 </a>
 
@@ -44,7 +35,7 @@
               <li>
                 <a href="userstats.php">
                   <i class="fas fa-users"></i>
-                  <span>Users</span>
+                  <span>User management</span>
 
                 </a>
 
@@ -60,7 +51,7 @@
               <li>
                 <a href="return.php">
                   <i class="fas fa-undo"></i>
-                  <span>Returns</span>
+                  <span>Returned items</span>
 
                 </a>
 
@@ -68,7 +59,7 @@
               <li>
                 <a href="activerentals.php">
                   <i class="fas fa-box"></i>
-                  <span>Active User Rentals</span>
+                  <span>Active Rentals</span>
 
                 </a>
 
@@ -98,3 +89,4 @@
               </li>
           </ul>
         </div>
+

@@ -109,7 +109,7 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
                                   </div>
                                 </div>
                               </div>
-                        <button type="submit" name= "#" class="btn btn-danger btn-sm">Cancel Order</button>
+                        <button type="submit" name= "order_cancel" class="btn btn-danger btn-sm">Cancel Order</button>
                         <a href="extenddelivery.php?id=<?php echo $row['id']; ?>"><img src="../assets/image/extend.png" style= "width: 25px; height: 25px;"></a>
                         <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
                         </form>
@@ -227,6 +227,18 @@ $return_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE user_id='
   
 
 
+</script>
+
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69cf84c40987d41c34228b7d/1jl99t85p';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
 </script>
   
 </body>
