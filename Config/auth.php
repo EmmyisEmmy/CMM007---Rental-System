@@ -50,20 +50,6 @@ if (isset($_POST['register_button'])) {
 
 
 
-
-// if (isset($_POST['register_button'])) {
-//       $email = $_POST['email'];
-//       $password = $_POST['password'];
-// }
-
-// As an admin, I want to upload items for users to see what is available
-
-
-// if (isset($_POST['register_button'])) {
-//       $email = $_POST['email'];
-//       $password = $_POST['password'];
-// }
-
 if (isset($_POST["login_button"])) {
     
     $email = $_POST['email'];
@@ -328,6 +314,14 @@ if (isset($_POST["order_cancel"])) {
 
         $notif = "Your order has been cancelled";
         mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$notif') ");
+
+        $admin_notification =  mysqli_query($conn, "SELECT id FROM users WHERE role='admin'");
+        while($admin = mysqli_fetch_assoc($admin_notification)) {
+            
+            $notif_admin = mysqli_real_escape_string($conn,"User placed an Order! Check it out");
+             mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('{$admin['id']}', '$notif_admin') ");
+
+        }
 
         $_SESSION['cancelled_success'] = "Your order has been cancelled";
         header("Location:../user/rentals.php");

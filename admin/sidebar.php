@@ -24,14 +24,7 @@
                 </a>
 
               </li>
-              <li>
-                <a href="stats.php">
-                  <i class="fas fa-chart-bar"></i>
-                  <span>Site traffic</span>
-
-                </a>
-
-              </li>
+              
               <li>
                 <a href="userstats.php">
                   <i class="fas fa-users"></i>
@@ -80,6 +73,14 @@
                 </a>
 
               </li>
+              <li>
+                <a href="#">
+                  <i class="fas fa-chart-bar"></i>
+                  <span>Tickets</span>
+
+                </a>
+
+              </li>
               <li class="logout">
                 <a href="../config/auth.php?logout=true">
                   <i class="fas fa-sign-out-alt"></i>
@@ -87,6 +88,7 @@
 
                 </a>
               </li>
+              
           </ul>
         </div>
 

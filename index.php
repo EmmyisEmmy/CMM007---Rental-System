@@ -180,54 +180,9 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
           
           </div>
       </section>
-<h5 class="available">Now Available to Rent</h5>
-            <section class="sect">
-          <div class= "items">
+
             
-<?php
-while ($row = mysqli_fetch_assoc($table_query)) { ?>
-            <div class="category" data-category="<?php echo $row['category'];?>">
-              <div class="image position-relative" style="display: inline-block; width: 100%;"><img src="../assets/image/<?php echo $row['image'];?>">
-              <span class="badge text-bg-dark position-absolute" style= "top: 8px; right: 8px;"><?php echo $row['item_condition'];?></span>
-              <span class="badge text-bg-dark position-absolute" style= "bottom: 8px; left: 8px;"><?php echo $row['category'];?></span>
-              </div>
-             
-              <div class="title">
-                  <span><?php echo $row['title'];?></span>
-                  <span class="price">£<?php echo $row['price'];?></span>
-                  
-                 
-              </div>
-              <!-- <div class="description"><?php echo $row['description'];?></div> -->
-                 <span class="description">Available stock (<?php echo $row['item_qty'];?>)</span>
 
-              <div class="new-box">
-                
-                <div class="user_decision">
-                  <i class="far fa-heart heart-btn" style="cursor: pointer;"></i>
-                  <a href= "items.php?id=<?php echo $row['id']; ?>" class="view_more">More Details</a>
-                  <div class="one-line">
-                      <form action="../config/auth.php" method="POST">
-                          <!-- <a href="Order.php?id=<?php echo $row['id']; ?>"><button class= "rent-button">Rent</button></a> -->
-                           <input type="hidden" name="item_id" value="<?php echo $row['id'];?>">
-                          <button type= "submit" class="rent-button" name="rent_item">Rent</i></button>
-                      </form>
-                    <form action="../config/auth.php" method="POST">
-                        <input type="hidden" name="item_id" value="<?php echo $row['id'];?>">
-                        <button type= "submit" class="addcart" name="cart_add"><i class="fas fa-shopping-cart"></i></button>
-                    </form>
-
-                  </div>
-                  
-   
-                </div>
-              </div>
-
-            </div>
-            <?php } ?>
-          </div>
-
-      </section>
 
 
     <input type="checkbox" id="FAQ">
@@ -294,7 +249,7 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
       </div>
     </div>
 
-<!-- 
+
    <footer class="footer-main">
       <div class="content-footer">
         <p>&copy; 2026 Orientals. All rights reserved.</p>
@@ -304,9 +259,9 @@ while ($row = mysqli_fetch_assoc($table_query)) { ?>
           <li><a href="#">Contact Us</a></li>
         </ul>
       </div>
-   </footer> -->
+   </footer>
 
-    <?php include("footer.php"); ?>
+    
 
 </body>
 </html>

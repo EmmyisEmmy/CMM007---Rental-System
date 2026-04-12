@@ -130,25 +130,7 @@ $return_order_count = mysqli_fetch_row($count_return_query);
                 </div>
               </div>
 
-              <div class= "content-inside">
-                <div class= "content-header">
-                  <div class= "description">
-                    <span class="title">Revenue this month</span>
-                    <span class="No-items">24</span>
-                  </div>
-                  <i class="fas fa-calendar-alt fa-xl"></i>
-                </div>
-              </div>
-
-              <div class= "content-inside">
-                <div class= "content-header">
-                  <div class= "description">
-                    <span class="title">Highest sales</span>
-                    <span class="No-items">24</span>
-                  </div>
-                  <i class="fas fa-chart-line fa-xl"></i>
-                </div>
-              </div>
+              
 
 
               
