@@ -213,7 +213,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    Yes, you can but a limit of 2 items only at a time.We consider availability of these items to our other customers also. So, we limit rentals per user to be a maximum of 2 items. Once that limit is reached, you can only rent a new item by returning the one rented.
                   </div>
                 </div>
               </div>
@@ -225,7 +225,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <strong>This is the second item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    Yes, you can but be sure to submit a ticket. If you find out that an item is broken please return to us but first submit a ticket so that we are aware. You can submit tickets on your profile page and also provide evidence for the damaged items.
                   </div>
                 </div>
               </div>
@@ -237,7 +237,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status= 'availab
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    It's simple. Return every item in good condition. If an item is broken on receiving shipment, submit a ticket and we will resolve and replace the rental item. However, if the item was in good condition when rented and on returns we discover that the item is broken, an additional cost will be added to your account. Please see our terms and conditions page.
                   </div>
                 </div>
               </div>

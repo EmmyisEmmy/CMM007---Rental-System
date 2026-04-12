@@ -1,6 +1,8 @@
 <?php 
 
 $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id= '{$_SESSION['user_id']}' AND is_read='0'");
+$user_query = mysqli_query($conn, "SELECT * FROM users WHERE id='{$_SESSION['user_id']}'");
+$user = mysqli_fetch_assoc($user_query)
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -15,7 +17,7 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboardu.php">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboardu.php">Rent items</a></li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="Track.php">Track Order</a></li>
         <li class="nav-item"><a class="nav-link" href="Analytics.php">Analytics</a></li>
         <li class="nav-item dropdown">
@@ -40,7 +42,7 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
               </button>
               <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;">
                   <h6 class="px-2">Notifications</h6><hr class="my-1">
-                  <?php while ($notif_admin = mysqli_fetch_assoc($notification_query)) { ?>
+                  <?php while ($notif= mysqli_fetch_assoc($notification_query)) { ?>
 
                     <li><a class="dropdown-item py-2 border-bottom d-flex align-items-center gap-2" href="rentals.php"><p class="mb-0" style="font-size: 13px;"><img src="../assets/image/inbox.png" style= "width: 18px; height: 18px;"></i> <?php echo $notif['message']; ?></p></a></li>
                 <?php } ?>
@@ -55,10 +57,7 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
             <span class="visually-hidden">New alerts</span>
             
               
-          </a>
-          <a href="#" class="position-relative text-dark fs-5">
-            <img src="../assets/image/heart.png" style= "width: 23px; height: 23px;">
-          </a>
+          
 
           <div class="dropdown pe-2">
               <a href="#" style="text-decoration: none;" class="position-relative text-dark fs-5" data-bs-toggle="dropdown">
@@ -70,13 +69,13 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
                     
                     <!-- <li><button class="dropdown-item" type="button">Profile</button></li>
                     <li><button class="dropdown-item" type="button">Change Language</button></li> -->
-                    <li class=" align-items-center px-3 "><p> User id: ID</p></a></li><hr>
+                    <li class=" align-items-center px-3 "><p> User id: ID<?php echo $user['usereg_id']; ?></p></a></li><hr>
                     <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/profileuser.png" style= "width: 18px; height: 18px; margin-right: 8px;"></i> <a class="dropdown-item" href="profile.php"> 
                      Profile
                     </a></li>
-                    <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/language.png" style= "width: 18px; height: 18px; margin-right: 8px;"></i> <a class="dropdown-item" href="#"> 
+                    <!-- <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/language.png" style= "width: 18px; height: 18px; margin-right: 8px;"></i> <a class="dropdown-item" href="#"> 
                      Language
-                    </a></li>
+                    </a></li> -->
                     <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/report.png" style= "width: 19px; height: 19px; margin-right: 8px;"></i> <a class="dropdown-item" href="tickets.php">Report an Issue</a></li>
                     <li class="d-flex align-items-center px-3 py-1"><img src="../assets/image/logoutuser.png" style= "width: 18px; height: 18px; margin-right: 8px;"></i> <a class="dropdown-item" href="../config/auth.php?logout=true">Log out</a></li>
                     
@@ -84,11 +83,6 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
                     
                   </ul>
           </div>
-
-          <!-- <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn" type="submit" style="background-color: #003049; color: white;">Search</button>
-          </form> -->
 
         </div>
       

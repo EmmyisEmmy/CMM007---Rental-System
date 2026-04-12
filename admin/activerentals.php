@@ -49,6 +49,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE status='ac
               <th>Pricing</th>
               <th>Status</th>
               <th>Tracking</th>
+              <th>Return status</th>
               
             </tr>
           </thead>
@@ -79,6 +80,7 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE status='ac
                       </form>
 
                     </td>
+                    <td><span class="badge rounded-pill text-bg-secondary">Not Due</span></td>
                 
               </tr>
               <?php } ?>

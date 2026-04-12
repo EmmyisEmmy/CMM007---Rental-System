@@ -36,7 +36,7 @@
               <li>
                 <a href="ud.php">
                   <i class="fas fa-box"></i>
-                  <span>Rentals</span>
+                  <span>Equipment management</span>
 
                 </a>
 
@@ -60,7 +60,7 @@
               <li>
                 <a href="post.php">
                   <i class="fas fa-file-alt"></i>
-                  <span>Post</span>
+                  <span>Post item</span>
 
                 </a>
 
@@ -74,7 +74,7 @@
 
               </li>
               <li>
-                <a href="#">
+                <a href="adminticket.php">
                   <i class="fas fa-ticket-alt"></i>
                   <span>Tickets</span>
 

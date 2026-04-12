@@ -31,7 +31,7 @@ $notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE use
                   <h6 class="px-2">Notifications</h6><hr class="my-1">
                   <?php while ($notif_admin = mysqli_fetch_assoc($notification_query)) { ?>
 
-                    <li><a class="dropdown-item py-2 border-bottom d-flex align-items-center gap-2" href="rentals.php"><p class="mb-0" style="font-size: 13px;"><img src="../assets/image/inbox.png" style= "width: 18px; height: 18px;"></i>    <?php echo $notif_admin['message']; ?></p></a></li>
+                    <li><a class="dropdown-item py-2 border-bottom d-flex align-items-center gap-2" href="activerentals.php"><p class="mb-0" style="font-size: 13px;"><img src="../assets/image/inbox.png" style= "width: 18px; height: 18px;"></i>    <?php echo $notif_admin['message']; ?></p></a></li>
                 <?php } ?>
                 <?php if (mysqli_num_rows($notification_query)== 0) { ?>
                     <li><p class="text-center text-muted py-3" style="font-size: 14px;">Nothing to See here...</p></li>

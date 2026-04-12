@@ -8,6 +8,8 @@ $revenue_query = mysqli_query($conn, "SELECT SUM(total) FROM active_orders");
 $total_revenue_count_query = mysqli_fetch_row($revenue_query);
 $count_return_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE status = 'returned'");
 $return_order_count = mysqli_fetch_row($count_return_query);
+$stock_query = mysqli_query($conn, "SELECT SUM(item_qty) FROM rentals WHERE status = 'available'");
+$total_stock_query = mysqli_fetch_row($stock_query);
 ?>
 
 <html lang="en">
@@ -124,7 +126,9 @@ $return_order_count = mysqli_fetch_row($count_return_query);
                 <div class= "content-header">
                   <div class= "description">
                     <span class="title">Total Stock</span>
-                    <span class="No-items">24</span>
+                    <span class="No-items"><?php
+                      echo $total_stock_query[0];
+                      ?></span>
                   </div>
                   <i class="fas fa-calendar-day fa-xl"></i>
                 </div>

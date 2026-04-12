@@ -25,14 +25,6 @@ $cart_count = mysqli_fetch_row($count_cart_query);
   <?php include("navbaru.php"); ?> 
 
     
-<!-- 
-    <div class="container mt-4 px-5"><h2>My Cart</h2></div>
-    <div class="card mb-3 container mt-4 px-5">
-      <div class="row g-0">
-          <div class="col-md-2"><img src="../assets/image/car.jpg" class="img-fluid rounded-start"></div>
-          <div class="col-md-2">Money</div>
-      </div>
-    </div> -->
 <div class="container mt-4 px-5">
   <h5>My Cart(<?php echo $cart_count[0]; ?>)</h5>
 
@@ -41,10 +33,7 @@ $cart_count = mysqli_fetch_row($count_cart_query);
           
             <div class="col-md-8">
       
-                
-              
-           
-
+          
             
               <?php
               while ($row = mysqli_fetch_assoc($table_query)) { ?>
@@ -59,7 +48,14 @@ $cart_count = mysqli_fetch_row($count_cart_query);
                         <strong><span><?php echo $row['item_name'];?></span></strong>
                         <span><?php echo $row['price'];?></span>
                         <span><img src="../assets/image/trash.png" style= "width: 22px; height: 22px;"></i></span>
-                        <button class="btn btn-primary btn-sm" style="background-color: #003049; color: white; border: none;">Rent</button>
+
+                        <!-- <input type="hidden" name="user_id" value= "<?php echo $_SESSION['user_id']; ?>"> -->
+                         <form action="../config/auth.php" method="POST">
+                          
+                           <input type="hidden" name="item_id" value="<?php echo $row['id'];?>">
+                          <button type="submit"  name="rent_item" class="btn btn-primary btn-sm" style="background-color: #003049; color: white; border: none;">Rent</button>
+                      </form>
+                        
 
                     </div>
 

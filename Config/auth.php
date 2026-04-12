@@ -29,8 +29,8 @@ if (isset($_POST['register_button'])) {
 
     } else {
 
-        $query = "INSERT INTO users (name, email, password, role)
-                  VALUES ('$name','$email','$password_hashed','$role')";
+        $query = "INSERT INTO users (name, email, password, role, usereg_id)
+                  VALUES ('$name','$email','$password_hashed','$role', '$usereg_id')";
 
         $query_run = mysqli_query($conn, $query);
 

@@ -53,28 +53,28 @@ $cancel = mysqli_fetch_row($cancel_query);
     <div class="card mb-3 p-3 container mt-4 px-5 d-flex flex-row">
         <div class="arrange" style="border-right: 1px solid #e0e0e0;">
           <strong><p>Total Amount Spent</p></strong>
-          <p style="font-size: 23px;">£ <?php echo $amount[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
+          <p style="font-size: 23px;">£ <?php echo $amount[0]; ?> </i></p>
           
         </div>
 
         <div class="arrange" style="border-right: 1px solid #e0e0e0;">
           <strong><p>No. of Orders</p></strong>
-          <p style="font-size: 23px;"><?php echo $orderno[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
+          <p style="font-size: 23px;"><?php echo $orderno[0]; ?> </i></p>
         </div>
 
         <div class="arrange" style="border-right: 1px solid #e0e0e0;">
           <strong><p>Active Orders</p></strong>
-          <p style="font-size: 23px;"><?php echo $active[0]; ?> <i class="fas fa-arrow-trend-down" style="color: red;"></i></p>
+          <p style="font-size: 23px;"><?php echo $active[0]; ?> </i></p>
         </div>
         
         <div class="arrange" style="border-right: 1px solid #e0e0e0;">
           <strong><p>Returned</p></strong>
-          <p style="font-size: 23px;"><?php echo $return[0]; ?> <i class="fas fa-arrow-trend-down" style="color: red;"></i></p></p>
+          <p style="font-size: 23px;"><?php echo $return[0]; ?> </i></p></p>
         </div>
 
          <div class="arrange">
           <strong><p>Cancelled</p></strong>
-          <p style="font-size: 23px;"><?php echo $cancel[0]; ?> <i class="fas fa-arrow-trend-up" style="color: green;"></i></p>
+          <p style="font-size: 23px;"><?php echo $cancel[0]; ?> </i></p>
         </div>
       
     </div>
@@ -109,11 +109,9 @@ $cancel = mysqli_fetch_row($cancel_query);
                       
                        <td>
                         
-                        <form action= "../config/auth.php" method="POST">
+                        
                         <span class="badge rounded-pill text-bg-secondary">Returned</span>
-                        <!-- <img src="../assets/image/redo.png" style= "width: 18px; height: 18px;"> -->
-                        <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
-                        </form>
+                        
                       </td>
                   </tr>       
               <?php } ?>
