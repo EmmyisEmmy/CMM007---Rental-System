@@ -99,5 +99,4 @@ $table_query = mysqli_query($conn, "SELECT * FROM active_orders WHERE status='ac
 </html>
       
 
-</body> 
-</html>       
+     

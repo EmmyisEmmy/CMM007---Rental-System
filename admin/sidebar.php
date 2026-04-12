@@ -75,7 +75,7 @@
               </li>
               <li>
                 <a href="#">
-                  <i class="fas fa-chart-bar"></i>
+                  <i class="fas fa-ticket-alt"></i>
                   <span>Tickets</span>
 
                 </a>

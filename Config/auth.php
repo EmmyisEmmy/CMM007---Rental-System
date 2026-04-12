@@ -284,6 +284,14 @@ if (isset($_POST["item_return"])) {
         $notif = "Thank You! You returned item!";
         mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('$user_id', '$notif') ");
 
+        $admin_notification =  mysqli_query($conn, "SELECT id FROM users WHERE role='admin'");
+        while($admin = mysqli_fetch_assoc($admin_notification)) {
+            
+            $notif_admin = mysqli_real_escape_string($conn,"User placed an Order! Check it out");
+             mysqli_query($conn, "INSERT INTO notifications (user_id, message) VALUES ('{$admin['id']}', '$notif_admin') ");
+
+        }
+
         $_SESSION['return_success'] = "You have successfully returned your item!";
         header("Location:../user/rentals.php");
         exit();

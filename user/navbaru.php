@@ -1,6 +1,6 @@
 <?php 
 
-$notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id= '{$_SESSION['admin_id']}' AND is_read='0'");
+$notification_query = mysqli_query($conn, "SELECT * FROM notifications WHERE user_id= '{$_SESSION['user_id']}' AND is_read='0'");
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">

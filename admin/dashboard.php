@@ -143,6 +143,6 @@ $return_order_count = mysqli_fetch_row($count_return_query);
         </div>
 
         
-        
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
