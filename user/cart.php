@@ -38,6 +38,8 @@ $cart_count = mysqli_fetch_row($count_cart_query);
               <?php
               while ($row = mysqli_fetch_assoc($table_query)) { ?>
 
+              <!-- <?php var_dump($row); ?> -->
+
 
               <div class="card mb-3 p-3 container mt-4 px-5">
 
@@ -47,14 +49,16 @@ $cart_count = mysqli_fetch_row($count_cart_query);
                         <img src="../assets/image/<?php echo $row['image'];?>" style="width:80px; height:80px; object-fit:cover; border-radius: 8px;">
                         <strong><span><?php echo $row['item_name'];?></span></strong>
                         <span><?php echo $row['price'];?></span>
-                        <span><img src="../assets/image/trash.png" style= "width: 22px; height: 22px;"></i></span>
-
-                        <!-- <input type="hidden" name="user_id" value= "<?php echo $_SESSION['user_id']; ?>"> -->
-                         <form action="../config/auth.php" method="POST">
+                        <form action="../config/auth.php" method="POST">
+                          <input type="hidden" name="cart_id" value= "<?php echo $row['id']; ?>">
+                          <button type="submit"  name="cart_delete_order" style="background: transparent; border: none; cursor:pointer;"> <span><img src="../assets/image/trash.png" style= "width: 22px; height: 22px;"></i></span></button>
                           
-                           <input type="hidden" name="item_id" value="<?php echo $row['id'];?>">
-                          <button type="submit"  name="rent_item" class="btn btn-primary btn-sm" style="background-color: #003049; color: white; border: none;">Rent</button>
-                      </form>
+                        <form>
+
+                        
+                          <a href="Order.php?id=<?php echo $row['item_id']; ?>"class="btn btn-primary btn-sm" style="background-color: #003049; color: white; border: none;">Rent</a> 
+                         
+                       
                         
 
                     </div>

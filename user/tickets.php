@@ -1,7 +1,7 @@
 <?php session_start();
 include("../config/db.php"); 
 $user_query = mysqli_query($conn, "SELECT * FROM users WHERE id='{$_SESSION['user_id']}'");
-$user = mysqli_fetch_assoc($user_query)
+$user = mysqli_fetch_assoc($user_query);
 ?>
 
 
@@ -20,7 +20,7 @@ $user = mysqli_fetch_assoc($user_query)
 
 <?php include("navbaru.php"); ?>
 
-<div classs="container mt-5" style="max-width: 1000px; margin: 0 auto; padding-top: 30px;">
+<div class="container mt-5" style="max-width: 1000px; margin: 0 auto; padding-top: 30px;">
 
     <div class="rounded-3 p-4 mb-4 text-center" style="background-color: #003049;">
           <img src="../assets/image/avatar.png" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid white;">
@@ -29,7 +29,7 @@ $user = mysqli_fetch_assoc($user_query)
     </div>
 
     <div class="card p-4">
-        <form action="../config/auth.php" method="POST">
+        <form action="../config/auth.php" method="POST" enctype="multipart/form-data">
 
             <h6 class="mb-3 fw-bold">Personal Information</h6>
 
@@ -73,7 +73,7 @@ $user = mysqli_fetch_assoc($user_query)
               <div class="mb-3">
                     <div class="mb-3">
                       <label for="exampleFormControlTextarea1" class="form-label">Help us understand the issue</label>
-                      <textarea class="form-control" style="  outline: none;" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <textarea class="form-control" name="message" style="  outline: none;" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
               </div>
 

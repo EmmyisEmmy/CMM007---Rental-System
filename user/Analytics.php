@@ -94,6 +94,7 @@ $cancel = mysqli_fetch_row($cancel_query);
               <th>days</th>
               <th>Spent</th>
               <th>Date Rented</th>
+              <th>Date Returned</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -106,6 +107,7 @@ $cancel = mysqli_fetch_row($cancel_query);
                       <td><?php echo $row['days']; ?></td>
                       <td><?php echo $row['total']; ?></td>
                       <td><?php echo $row['rented_date']; ?></td>
+                      <td><?php echo $row['date_returned']; ?></td>
                       
                        <td>
                         

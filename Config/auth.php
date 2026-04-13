@@ -437,6 +437,9 @@ if (isset($_POST["order_placed"])) {
 
 if (isset($_POST["rent_item"])) {
 
+    // var_dump($_POST);
+    // exit();
+
     $user_id = $_SESSION['user_id'];
     $item_id = $_POST['item_id'];
     $limit_order_query = mysqli_query($conn, "SELECT COUNT(*) FROM active_orders WHERE user_id='$user_id' AND status='active'");$limit_order_count = mysqli_fetch_row($limit_order_query);
@@ -452,7 +455,7 @@ if (isset($_POST["rent_item"])) {
 
     $outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
     $active = mysqli_fetch_assoc($outcome);
-    if ($active['item_qty'] <= 0) {
+    if ((int)$active['item_qty'] <= 0) {
     $_SESSION['error_availability'] = "This item is out of stock. Check again later";
         header("Location: ../user/dashboardu.php");
     exit();
@@ -669,6 +672,66 @@ if (isset($_POST["order_extend"])) {
         exit();
     }
 
+
+}
+
+if (isset($_POST['cart_delete_order'])) {
+    $cart_id = $_POST['cart_id'];
+    mysqli_query($conn, "DELETE FROM cart WHERE id='$cart_id'");
+    header("Location: ../user/cart.php");
+    exit();
+
+
+
+}
+
+if (isset($_POST["ticket_submit"])) {
+
+    $reason = $_POST['reason'];
+    $user_id = $_SESSION['user_id'];
+    $message = $_POST['message'];
+    $image = $_FILES['image']['name'];
+    $image_tmp = $_FILES['image']['tmp_name'];
+    move_uploaded_file($image_tmp, "../assets/image/" . $image);
+    $ticket_ref = rand(100000, 999999);
+
+    $query = "INSERT INTO tickets (reason, user_id, message, image, ticket_ref)
+            VALUES ('$reason','$user_id','$message', '$image', '$ticket_ref')";
+
+    $query_table = mysqli_query($conn, $query);
+
+
+    
+    if ($query_table) {
+
+        $_SESSION['ticket_success'] = "You've submitted a ticket";
+        header("Location: ../user/tickets.php");
+        exit();
+
+    } else {
+        $_SESSION['ticket_failure'] = "Ticket submission has failed";
+        header("Location: ../user/tickets.php");
+        exit();
+    }
+
+
+}
+
+if (isset($_POST['ticket_close'])) {
+
+    $id_ticket = $_POST['id_ticket'];
+    mysqli_query($conn, "UPDATE tickets SET status='closed' WHERE id='$id_ticket'");
+    header("Location: ../admin/adminticket.php");
+    exit();
+
+}
+
+if (isset($_POST['ticket_open'])) {
+
+    $id_ticket = $_POST['id_ticket'];
+    mysqli_query($conn, "UPDATE tickets SET status='open' WHERE id='$id_ticket'");
+    header("Location: ../admin/adminticket.php");
+    exit();
 
 }
 ?>

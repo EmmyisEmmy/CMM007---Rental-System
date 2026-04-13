@@ -1,6 +1,6 @@
 <?php session_start();
 include("../config/db.php"); 
-$table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status = 'deleted'");
+$table_query = mysqli_query($conn, "SELECT * FROM tickets WHERE status = 'open'");
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +46,8 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status = 'delete
               <th>Ticket ID</th>
               <th>description</th>
               <th>Issue</th>
-              <th>Status</th>
+              <th>Date Created</th>
+              <th>Ticket status</th>
 
             </tr>
           </thead>
@@ -55,17 +56,28 @@ $table_query = mysqli_query($conn, "SELECT * FROM rentals WHERE status = 'delete
               <?php
               while ($row = mysqli_fetch_assoc($table_query)) { ?>
                   <tr>
-                      <td><?php echo $row['image']; ?></td>
-                      <td><?php echo $row['title']; ?></td>
-                      <td><?php echo $row['category']; ?></td>
-                      <td><?php echo $row['price']; ?></td>
+                      <td><img src="../assets/image/<?php echo $row['image']; ?>" style="width:50px; height: 50px; object-fit: cover; border-radius: 5px;"></td>
+                      <td><?php echo $row['ticket_ref']; ?></td>
+                      <td><?php echo $row['message']; ?></td>
+                      <td><?php echo $row['reason']; ?></td>
+                      <td><?php echo $row['created_at']; ?></td>
                       <td>
                         
+                        <?php if($row['status']== 'open') { ?>
+
                         <form action= "../config/auth.php" method="POST">
-                        <button type="submit" name= "item_add" class="btn btn-success btn-sm">Add</button>
-                        <input type="hidden" name="id_item" value="<?php echo $row['id']; ?>">
+                            <input type="hidden" name="id_ticket" value="<?php echo $row['id']; ?>">
+                            <button type="submit" name= "ticket_close" class="btn btn-danger btn-sm">Close</button>
+                            
                         </form>
-                      </td>
+                      <?php } else { ?>
+                         <form action= "../config/auth.php" method="POST">
+                          <input type="hidden" name="ticket_open" value="<?php echo $row['id']; ?>">
+                          <button type="submit" name= "id_ticket" class="btn btn-success btn-sm">Open</button>
+                            
+                        </form>
+                      <?php } ?>
+                    </td>
                   </tr>       
               <?php } ?>
           </tbody>
