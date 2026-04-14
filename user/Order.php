@@ -138,6 +138,7 @@ $user = mysqli_fetch_assoc($user_query);
 </form>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <?php include("../notification.php"); ?>
 
   <script>
 

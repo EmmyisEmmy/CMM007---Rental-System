@@ -387,8 +387,18 @@ if (isset($_POST["order_placed"])) {
 
     // $stock_qty = $active['item_qty'];
 
-    if ($quantity > 2) { 
+    if ((int)$quantity > 2) { 
         $_SESSION['limit_order'] = "Only 2 orders maximum is allowed. Return an item";
+        header("Location: ../user/order.php?id=$item_id");
+        exit();
+
+        
+
+
+    }
+
+    if ((int)$quantity > (int)$active ['item_qty']) { 
+        $_SESSION['error_availability'] = "Not enough stock";
         header("Location: ../user/order.php?id=$item_id");
         exit();
 
@@ -455,7 +465,7 @@ if (isset($_POST["rent_item"])) {
 
     $outcome = mysqli_query($conn, "SELECT * FROM rentals WHERE id='$item_id'");
     $active = mysqli_fetch_assoc($outcome);
-    if ((int)$active['item_qty'] <= 0) {
+    if ((int)$active['item_qty'] <= 0 || (int)$active['item_qty'] < (int)$quantity ) {
     $_SESSION['error_availability'] = "This item is out of stock. Check again later";
         header("Location: ../user/dashboardu.php");
     exit();
