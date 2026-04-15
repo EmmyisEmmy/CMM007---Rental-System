@@ -211,14 +211,6 @@ tbody tr {
   display: inline-block;
 }
 
-/* .amount::after {
-
-  content: '';
-  bottom: -4px;
-  position: absolute;
-  left: 0;
-  width: 100%;
-} */
 
 .breakdown{
   text-align: right;
